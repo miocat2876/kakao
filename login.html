@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+
+    #wrap{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    #main{
+
+        
+
+        height: 640px;
+        width: 340px;
+        background-color: #FFEB33;
+
+    }
+
+    #main img{
+
+        margin-top: 80px;
+        margin-left: 50px;
+
+
+    }
+
+    #login{
+
+        margin-left: 50px;
+
+    }
+
+    #login_input {
+
+        display: block;
+    }
+
+    #login_input > input {
+            
+            justify-content: center;
+
+            width: 240px;
+
+            padding: 0px;
+
+            padding-left: 10px;
+
+            height: 40px;
+
+            border: 0px;
+
+    }
+
+    #login_input > input::placeholder {
+            
+            color: lightslategray;
+
+    }
+
+    #login_input > input[type = "password"] {
+        
+        border-top: 1px solid black;
+
+    }
+
+
+    #login_input > input:focus {
+        
+        outline: white;
+
+    }
+
+    #login_button{
+
+        display: block;
+        margin-top: 5px;
+        
+    }
+
+    #login_button button{
+
+        width: 250px;
+        height: 40px;
+        padding: 0px;
+        background-color: #F6F6F6;
+        border: 0px solid black;
+
+
+    }
+
+    #login_button p{
+
+
+        color: gray;
+
+
+    }
+
+    #login_auto input{
+
+        display: inline;
+
+        
+    }
+
+    #login_auto p{
+
+        display: inline;
+        font-size: 12px;
+
+
+    }
+
+
+
+
+</style>
+
+
+<body>
+
+    <div id="wrap">
+
+
+        <div id="main">
+
+            <div>
+
+                <img src="kakaoLogo.PNG">
+
+            </div>
+
+            <div id = "login">
+
+                <div id = "login_input">
+
+                    <input type="text" placeholder="카카오계정">
+                    <input type="password" placeholder="비밀번호">
+
+                </div>
+
+                <div id = "login_button">
+
+                    <button ><p>로그인</p</button>
+        
+                </div>
+
+                <div id="login_auto">
+
+                    <input type="checkbox"> <p>자동로그인</p>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    
+</body>
+</html>

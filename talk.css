@@ -1,0 +1,162 @@
+*{
+    margin: 0; 
+    padding: 0;
+}
+
+.mainContainer{
+    border: 1px solid;
+    overflow: hidden;
+    width: 360px;
+    box-sizing: border-box;
+    margin: 10px auto;
+}
+.headContainer{
+    box-sizing: border-box;
+    width: 360px;
+    margin: 0 auto;
+    border-bottom: 1px solid gray;
+}
+
+.state{
+    width: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.leftSection{
+    float: left;
+}
+#time{
+    font-size: 12px;
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+.rightSection{
+    float: right;
+}
+#condition{
+    float: left;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 5px;
+    font-size: 50%;
+}
+#wifi{
+    float: left;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 5px;
+    font-size: 50%;
+}
+#battery{
+    float: left;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 50%;
+}
+
+.title{
+    width: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+#header{
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px;
+    height: 40px;
+    width: 100px;
+}
+.headerIcon{
+    float: right;
+}
+
+.headerIcon > li{
+    width: 30px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.talkList{
+    width: 360px;
+    height: 530px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 5px;
+}
+.friendState{
+    width: 350px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 auto;
+}
+#friendCount, #count{
+    font-size: 5px;
+    float: left;
+    line-height: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+.talk{
+    width: 350px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.profile{
+    width: 30px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 30px;
+    background-image: url(https://pbs.twimg.com/profile_images/607684943993397248/90QNQdDL.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    float: left;
+    line-height: 30px;
+    margin-right: 5px;
+}
+.talkContainer{
+    float: left;
+    width: calc(100% - 30px);
+    height: 30px;
+    box-sizing: border-box;
+}
+.name{
+    font-size: 13px;
+    line-height: 20px;
+    height: 20px;
+}
+.text{
+    font-size: 10px;
+    line-height: 10px;
+    height: 10px;
+}
+
+.bottomMenu{
+    background: rgb(235, 233, 233);
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 auto;
+    width: 360px;
+    border-top: 1px solid gray;
+}
+.bottomMenuIcon{
+    width: 350px;
+    
+}
+.bottomMenuIcon > li{
+    width: calc(100% / 4);
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+}
