@@ -1,0 +1,36 @@
+.form{
+    width: 340px;
+    height: 640px;
+    margin: 0 auto;
+    background-color: #FFEB33;
+}
+
+.inner{
+    width: 250px;
+    background: red;
+    margin: 0 auto;
+}
+
+.img{
+    width: 225px;
+    height: 146px;
+    background: green;
+}
+
+.container{
+    margin-top: 30px;
+    background: blue;
+}
+
+.box{
+    width: 252px;
+    height: 42px;
+    border: 1px solid gray;
+}
+
+.btn{
+    width: 252px;
+    height: 42px;
+    background: green;
+    margin-top: 30px;
+}
