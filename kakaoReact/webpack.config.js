@@ -16,28 +16,25 @@ module.exports = {
                     }
                 }
             },
+            // {
+            //     test: /\.(html)$/,
+            //     use: [
+            //         {
+            //             loader: "html-loader",
+            //             options: {minimize: true}
+            //         }
+            //     ]
+            // },
             {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                        options: {minimize: true}
-                    }
-                ]
-            },
-            {
-                test: /\.css$/,
-                use: ["style-loader"]
-            },
-            {
-                test: /\.css$/,
-                use: ["css-loader"]
-            } 
+                test: /\.(css)$/,
+                exclude: /node_modules/,
+                use: ["style-loader", "css-loader"]
+            }
         ]
     },
 
     resolve: {
-        extensions: ["*", ".js"]
+        extensions: ["*", ".js", "jsx"]
     },
 
     output: {

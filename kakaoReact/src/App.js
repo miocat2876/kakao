@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-import SignUp from './SignUp';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { SignUp, Login } from './routers';
 
 
-class App extends Component {
-    
-    handleCreate = (data) => {
-        console.log(data);
-    }
-
-    render(){
-        return(
-            <div>
-                <SignUp onCreate={this.handleCreate} />
-            </div>
-        );
-    }
+const App = () =>{
+    return(
+        <BrowserRouter>
+            <Switch>
+                <Route path="/signUp" component={SignUp} />
+                {/* <Route path="/login" component={Login} /> */}
+            </Switch>
+        </BrowserRouter>
+    );
 }
 
 
