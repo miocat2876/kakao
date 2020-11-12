@@ -1,0 +1,112 @@
+#wrap{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#main{
+
+    
+
+    height: 640px;
+    width: 340px;
+    background-color: #FFEB33;
+
+}
+
+#main img{
+
+    margin-top: 80px;
+    margin-left: 50px;
+
+
+}
+
+#login{
+
+    margin-left: 50px;
+
+}
+
+#login_input {
+
+    display: block;
+}
+
+#login_input > input {
+        
+        justify-content: center;
+
+        width: 240px;
+
+        padding: 0px;
+
+        padding-left: 10px;
+
+        height: 40px;
+
+        border: 0px;
+
+}
+
+#login_input > input::placeholder {
+        
+        color: lightslategray;
+
+}
+
+#login_input > input[type = "password"] {
+    
+    border-top: 1px solid black;
+
+}
+
+
+#login_input > input:focus {
+    
+    outline: white;
+
+}
+
+#login_button{
+
+    display: block;
+    margin-top: 5px;
+    
+}
+
+#login_button button{
+
+    width: 250px;
+    height: 40px;
+    padding: 0px;
+    background-color: #F6F6F6;
+    border: 0px solid black;
+
+
+}
+
+#login_button p{
+
+
+    color: gray;
+
+
+}
+
+#login_auto input{
+
+    display: inline;
+
+    
+}
+
+#login_auto p{
+
+    display: inline;
+    font-size: 12px;
+
+
+}

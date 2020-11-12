@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SignUp.css';
 
-const SignUp = () =>{
+const SignUp = ({history}) =>{
     const [member, setMember] = useState({
         id: "",
         pw: "",
@@ -26,7 +26,7 @@ const SignUp = () =>{
         console.log('submit');
         console.log(member);
         ev.preventDefault();
-        props.onCreate(this.state);
+        // props.onCreate(this.sstate);
         setMember({
             id: "",
             pw: "",
@@ -34,6 +34,11 @@ const SignUp = () =>{
             phone: "",
             img: ""
         });
+        goLogin();
+    }
+
+    const goLogin = () => {
+        history.push('/login');
     }
 
     return(
