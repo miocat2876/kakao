@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.chat{
+    width: 340px;
+    height: 640px;
+    margin: 0 auto;
+}
+
+.chatInner{
+    width: 320px;
+    margin: 0 auto;
+}
+
+.header{
+    height: 50px;
+    background: black;
+}
+.headerInner{
+    width: 320px;
+    margin: 0 auto;
+}
+.text{
+    line-height: 50px;
+    color: white;
+}
+.main{
+    height: calc(100% - 100px);
+}
+.chatList{
+    height: calc(100% - 30px);
+}
+.inputText{
+    height: 30px;
+    background: lightcoral;
+    bottom: 0;
+}
+.footer{
+    height: 50px;
+    background: black;
+    bottom: 0;
+}

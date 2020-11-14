@@ -1,21 +1,33 @@
-.signup .form{
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.signup {
     width: 340px;
     height: 640px;
     margin: 0 auto;
     background-color: #FFEB33;
 }
-
+.form{
+    width: 100%;
+    height: 100%;
+}
 .inner{
     width: 250px;
+    height: 428px;
     background: red;
     margin: 0 auto;
+    /* margin-top: 200px; */
 }
-
-.img{
+/* 
+.logo{
     width: 225px;
     height: 146px;
+    margin: 0 auto;
+    padding-top: 100px;
     background: green;
-}
+} */
 
 .container{
     margin-top: 30px;
@@ -26,8 +38,11 @@
     width: 252px;
     height: 42px;
     border: 1px solid gray;
+    border-bottom: none;
 }
-
+.box:last-child{
+    border: 1px solid gray;
+}
 .btn{
     width: 252px;
     height: 42px;

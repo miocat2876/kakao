@@ -1,25 +1,72 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Login.css';
-// import kakaoLogo from './images/kakaoLogo.PNG'
+import axios from 'axios';
+// import kakaoLogo from '../../images/kakaoLogo.png';
 
 const Login = ({ history }) => {
+    const [login, setLogin] = useState(
+        {
+            id: "",
+            pw: ""
+        }
+    );
+    
+    const { id, pw } = login;
+
     const goChats = () =>{
         history.push('/chats');
     }
+
+    const handleClick = () => {
+        console.log({id}); 
+        // console.log(state);
+        axios.post('http://3.35.140.126:9000/user/login', 
+            login
+          )
+          .then(function (response) {
+            console.log(response);
+            goChats();
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+    const handleChange = (e) => {
+        console.log('handleChange');
+        const { value, name } = e.target;
+        setLogin({
+            ...login,
+            [name]: value
+        });
+    }
+
     return (
     <>
     <div id="wrap">
         <div id="main">
             <div>
-                <img src="/images/kakaoLogo.PNG"/>
+                {/* <img src={kakaoLogo}/> */}
             </div>
             <div id = "login">
                 <div id = "login_input">
-                    <input type="text" placeholder="카카오계정"/>
-                    <input type="password" placeholder="비밀번호"/>
+                    <input 
+                        type="text" 
+                        placeholder="카카오계정" 
+                        value={id}
+                        name="id"
+                        onChange={handleChange}
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="비밀번호"
+                        value={pw}
+                        name="pw"
+                        onChange={handleChange}
+                    />
                 </div>
                 <div id = "login_button">
-                    <button onClick={goChats}><p>로그인</p></button>
+                    <button onClick={handleClick}><p>로그인</p></button>
                 </div>
                 <div id="login_auto">
                     <input type="checkbox"/><p>자동로그인</p>
