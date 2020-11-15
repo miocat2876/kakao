@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Login.css';
 import axios from 'axios';
-// import kakaoLogo from '../../images/kakaoLogo.png';
+import kakaoLogo from '../../images/kakaoLogo.png';
 
 const Login = ({ history }) => {
     const [login, setLogin] = useState(
@@ -42,14 +42,13 @@ const Login = ({ history }) => {
     }
 
     return (
-    <>
     <div id="wrap">
         <div id="main">
-            <div>
-                {/* <img src={kakaoLogo}/> */}
+            <div className="logoContainer">
+                <img src={kakaoLogo}/>
             </div>
-            <div id = "login">
-                <div id = "login_input">
+            <div className="section">
+                <div id="login_input">
                     <input 
                         type="text" 
                         placeholder="카카오계정" 
@@ -65,16 +64,18 @@ const Login = ({ history }) => {
                         onChange={handleChange}
                     />
                 </div>
-                <div id = "login_button">
+                <div id="login_button">
                     <button onClick={handleClick}><p>로그인</p></button>
                 </div>
                 <div id="login_auto">
-                    <input type="checkbox"/><p>자동로그인</p>
+                    <div id="loginAutoSection">
+                        <input type="checkbox"/><p>자동로그인</p>
+                    </div>
+                    <div id="signUp">회원가입</div>
                 </div>
             </div>
         </div>
     </div>
-    </>
   );
 };
 

@@ -1,112 +1,76 @@
-#wrap{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-#main{
-
-    
-
+#wrap{
     height: 640px;
     width: 340px;
     background-color: #FFEB33;
-
+    margin: 0 auto;
+    padding-top: 70px;
 }
 
-#main img{
-
-    margin-top: 80px;
-    margin-left: 50px;
-
-
+#main{
+    margin: 0 auto;
+    width: 240px;
 }
 
-#login{
-
-    margin-left: 50px;
-
+.logoContainer{
+    height: 146px;
 }
 
-#login_input {
-
-    display: block;
+.section{
+    width: 240px;
 }
 
-#login_input > input {
-        
-        justify-content: center;
-
-        width: 240px;
-
-        padding: 0px;
-
-        padding-left: 10px;
-
-        height: 40px;
-
-        border: 0px;
-
+#login_input > input{
+    width: 240px;
+    height: 42px;
+    border: 1px solid gray;
+    padding-left: 10px;
 }
 
-#login_input > input::placeholder {
-        
-        color: lightslategray;
-
+#login_input > input:nth-child(1){
+    border-bottom: none;
 }
 
-#login_input > input[type = "password"] {
-    
-    border-top: 1px solid black;
-
+#login_input > input::placeholder {    
+    color: lightslategray;
 }
-
 
 #login_input > input:focus {
-    
     outline: white;
-
 }
 
 #login_button{
-
-    display: block;
-    margin-top: 5px;
-    
+    margin: 10px 0;
 }
 
 #login_button button{
-
-    width: 250px;
-    height: 40px;
-    padding: 0px;
-    background-color: #F6F6F6;
-    border: 0px solid black;
-
-
+    width: 240px;
+    height: 42px;
+    border: 1px solid lightgray;
+    background: #ececec;
 }
 
-#login_button p{
-
-
-    color: gray;
-
-
+#login_auto{
+    display: flex;
+    justify-content: space-between;
 }
 
 #login_auto input{
-
-    display: inline;
-
-    
+    width: fit-content;
 }
 
 #login_auto p{
-
+    margin-left: 5px;
     display: inline;
     font-size: 12px;
+}
 
-
+#signUp{
+    font-size: 12px;
+    width: fit-content;
 }

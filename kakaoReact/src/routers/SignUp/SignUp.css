@@ -3,49 +3,72 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .signup {
     width: 340px;
     height: 640px;
     margin: 0 auto;
     background-color: #FFEB33;
 }
-.form{
-    width: 100%;
-    height: 100%;
-}
+
 .inner{
-    width: 250px;
-    height: 428px;
-    background: red;
+    width: 240px;
     margin: 0 auto;
-    /* margin-top: 200px; */
+    padding-top: 70px;
 }
-/* 
+
+.logoContainer{
+    width: 100%;
+    height: 146px;
+    display: flex;
+    justify-content: center;
+}
+
 .logo{
     width: 225px;
     height: 146px;
-    margin: 0 auto;
-    padding-top: 100px;
-    background: green;
-} */
+    background: wheat;
+}
 
 .container{
-    margin-top: 30px;
-    background: blue;
+    margin-bottom: 15px;
 }
 
 .box{
-    width: 252px;
+    width: 240px;
     height: 42px;
     border: 1px solid gray;
     border-bottom: none;
+    padding-left: 10px;
 }
+
 .box:last-child{
     border: 1px solid gray;
 }
-.btn{
-    width: 252px;
+
+.imgConatiner{
+    width: 240px;
+    display: flex;
+    border: 1px solid gray; 
+}
+
+.imgFile{
+    border: none;
+    padding-left: 10px;
+}
+
+.imgFileBtn{
+    width: 150px;
     height: 42px;
-    background: green;
-    margin-top: 30px;
+    line-height: 42px;
+    font-size: 13px;
+    background: #999999;
+    text-align: center;
+}
+
+.btn{
+    width: 240px;
+    height: 42px;
+    border: 1px solid lightgray;
+    background: #ececec;
 }
