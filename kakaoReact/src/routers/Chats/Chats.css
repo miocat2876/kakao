@@ -71,4 +71,18 @@
     height: 50px;
     background: black;
     bottom: 0;
+    display: flex;
+}
+
+.findChat{
+    width: calc( 100% / 2 );
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+.makeChat{
+    width: calc( 100% / 2 );
+    color: white;
+    text-align: center;
+    line-height: 50px;
 }

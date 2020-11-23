@@ -38,11 +38,11 @@
     width: 240px;
     height: 42px;
     border: 1px solid gray;
-    border-bottom: none;
+    /* border-top: none; */
     padding-left: 10px;
 }
 
-.box:last-child{
+.box:first-child{
     border: 1px solid gray;
 }
 
@@ -71,4 +71,8 @@
     height: 42px;
     border: 1px solid lightgray;
     background: #ececec;
+}
+
+.btn:hover{
+    cursor: pointer;
 }

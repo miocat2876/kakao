@@ -1,45 +1,129 @@
+/* .inlineStyle{
+    display: inline;
+} */
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-.chat{
+#chat{
     width: 340px;
     height: 640px;
+    /* display: flex;  */
+    /* justify-content: center; */
     margin: 0 auto;
+    border: 1px solid;
 }
 
-.chatInner{
-    width: 320px;
-    margin: 0 auto;
-}
+/* #chat{
+    justify-content: center;
+    align-items: center;  
+} */
 
-.header{
+#chat_header{
+    background-color: #B2C7D9;
+    width: 100%;
     height: 50px;
-    background: black;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
 }
-.headerInner{
-    width: 320px;
-    margin: 0 auto;
-}
-.text{
+.left{
+    width: fit-content;
+    height: 50px;
+    width: 100px;
+    /* background: wheat; */
     line-height: 50px;
-    color: white;
+    text-align: center;
 }
-.main{
+
+.right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gohome{
+    width: 80px;
+    height: 40px;
+    background: wheat;
+    border: none;
+}
+.gohome:hover{
+    cursor: pointer;
+}
+/* .header_1{
+    display: inline;
+}
+.header_2{
+    display: block;
+} */
+
+#chat_view{
+    padding: 20px;
+    background-color: #B2C7D9;
+    width: 100%;
     height: calc(100% - 100px);
+    /* border: 1px solid black; */
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+} 
+
+#chat_view::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
-.chatList{
-    height: calc(100% - 30px);
+
+.chat_p{
+    text-align: right ;
+    background: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 30px;
+    margin-top: 7px;
 }
-.inputText{
-    height: 30px;
-    background: lightcoral;
-    bottom: 0;
+
+.chat_cp{
+    text-align: center;
 }
-.footer{
+
+.chat_op{
+    text-align: left ;
+    background: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 30px;
+    margin-top: 7px;
+}
+
+.chat_p_p{
+    font-size: 13px;
+    /* display: inline-block;
+    width: 40%;
+    word-wrap: break-word; */
+}
+
+#chat_input{
+    padding: 5px 20px;
+    background-color: white;
+    width: 100%;
     height: 50px;
-    background: black;
-    bottom: 0;
+    /* border: 1px solid black; */
 }
+#inputBox{
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightgray;
+    border-radius: 50px;
+}
+
+/* #chat_input > input{
+    background-color: white;
+    width: 400px;
+    height: 100px;
+    border: 0px solid black;
+    padding: 0px;
+    margin: 0px;
+} */

@@ -11,39 +11,49 @@ const SignUp = ({history}) =>{
         name: "",
         phone: "",
         img: ""
+        // let bgColor;
     });
+
+    const [valid, setValid] = useState('');
+    const [passwordCheck, setPasswordCheck] = useState('');
 
     const { id, pw, pwCheck, name, phone, img } = member;
 
     const onChangeValue = (e) => {
-        console.log('handleChange');
-        
         const { value, name } = e.target;
         
         setMember({
             ...member,
             [name]: value
         });
-        console.log(id);
 
         if ( name === 'id' ){ //아이디 값 중복 체크
-            console.log('ajax');
+            
             axios.post('http://3.35.140.126:9000/user/duplicate_check',
              id
             )
             .then(function(response){  
-                alert('사용 가능한 아이디입니다.');
+                console.log('success');
+
+                if(response === 'success'){
+                    //성공
+                }
+                else{
+                    //실패
+                }
+                // const {data : {errorMsg}} = response;
+                setValid('true');
+                
             })
             .catch(function(error){
                 console.log('error');
-                alert('이미 사용중인 아이디입니다.');
+                setValid('false');
+                // alert('이미 사용중인 아이디입니다.');
             })
         }
     }
 
     const submit = (ev) => {
-        console.log('submit');
-        console.log(member);
         ev.preventDefault();
         // props.onCreate(this.state);
         
@@ -81,6 +91,20 @@ const SignUp = ({history}) =>{
         history.push('/login');
     }
 
+    const divStyle = {
+        color: 'blue',
+        fontSize: '12px'
+    };
+
+    const changeBoxColor = {
+        color: (valid === 'true') ? "blue" : 'red'
+    };
+
+    const checkStyle = {
+        color: 'red',
+        fontSize: '12px'
+    }
+    //리턴에 영향을 주고 싶으면 state에 둬야한다.
     return(
         <main className="signup" >
                 <form className="form">
@@ -90,12 +114,15 @@ const SignUp = ({history}) =>{
                         </div>
                         <div className="container">
                         <input
+                            style={changeBoxColor}
                             className="box"
                             placeholder="아이디"
                             value={id}
                             onChange={onChangeValue}
                             name="id">
                         </input>
+                        {(valid === 'true' && <div style={divStyle}>사용 가능한 아이디입니다.</div>)}
+                        {(valid === 'false' && <div style={divStyle}>이미 사용중인 아이디입니다.</div>)}
                         <input
                             type="password"
                             className="box"
@@ -112,6 +139,7 @@ const SignUp = ({history}) =>{
                             value={pwCheck}
                             onChange={onChangeValue}>
                         </input>
+                        {(passwordCheck === 'false' && <div style={checkStyle}>입력하신 비밀번호 확인 부탁드립니다.</div>)}
                         <input
                             className="box"
                             placeholder="이름"

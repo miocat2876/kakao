@@ -18,7 +18,6 @@ const Login = ({ history }) => {
     }
 
     const handleClick = () => {
-        console.log({id}); 
         // console.log(state);
         axios.post('http://3.35.140.126:9000/user/login', 
             login
@@ -33,12 +32,15 @@ const Login = ({ history }) => {
     }
 
     const handleChange = (e) => {
-        console.log('handleChange');
         const { value, name } = e.target;
         setLogin({
             ...login,
             [name]: value
         });
+    }
+
+    const signUp = () => {
+        history.push('/signUp');
     }
 
     return (
@@ -71,7 +73,7 @@ const Login = ({ history }) => {
                     <div id="loginAutoSection">
                         <input type="checkbox"/><p>자동로그인</p>
                     </div>
-                    <div id="signUp">회원가입</div>
+                    <a id="signUp" onClick={signUp}>회원가입</a>
                 </div>
             </div>
         </div>
