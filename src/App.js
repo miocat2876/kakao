@@ -5,7 +5,7 @@ import { SignUp, Login, Chats, Chat, Modal } from './routers';
 
 const App = () =>{
     return(
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
             <Switch>
                 <Route path="/signUp" component={SignUp} />
                 <Route path="/login" component={Login} />
