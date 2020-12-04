@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/miocat2876/kakao/static/css/main.6e6ff5d5.chunk.css",
-    "main.js": "/miocat2876/kakao/static/js/main.b47b3b1d.chunk.js",
-    "main.js.map": "/miocat2876/kakao/static/js/main.b47b3b1d.chunk.js.map",
-    "runtime-main.js": "/miocat2876/kakao/static/js/runtime-main.1a9a6c02.js",
-    "runtime-main.js.map": "/miocat2876/kakao/static/js/runtime-main.1a9a6c02.js.map",
-    "static/js/2.350479e2.chunk.js": "/miocat2876/kakao/static/js/2.350479e2.chunk.js",
-    "static/js/2.350479e2.chunk.js.map": "/miocat2876/kakao/static/js/2.350479e2.chunk.js.map",
-    "index.html": "/miocat2876/kakao/index.html",
-    "static/css/main.6e6ff5d5.chunk.css.map": "/miocat2876/kakao/static/css/main.6e6ff5d5.chunk.css.map",
-    "static/js/2.350479e2.chunk.js.LICENSE.txt": "/miocat2876/kakao/static/js/2.350479e2.chunk.js.LICENSE.txt"
+    "main.css": "/kakao/static/css/main.6e6ff5d5.chunk.css",
+    "main.js": "/kakao/static/js/main.b47b3b1d.chunk.js",
+    "main.js.map": "/kakao/static/js/main.b47b3b1d.chunk.js.map",
+    "runtime-main.js": "/kakao/static/js/runtime-main.fbc4c636.js",
+    "runtime-main.js.map": "/kakao/static/js/runtime-main.fbc4c636.js.map",
+    "static/js/2.350479e2.chunk.js": "/kakao/static/js/2.350479e2.chunk.js",
+    "static/js/2.350479e2.chunk.js.map": "/kakao/static/js/2.350479e2.chunk.js.map",
+    "index.html": "/kakao/index.html",
+    "static/css/main.6e6ff5d5.chunk.css.map": "/kakao/static/css/main.6e6ff5d5.chunk.css.map",
+    "static/js/2.350479e2.chunk.js.LICENSE.txt": "/kakao/static/js/2.350479e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1a9a6c02.js",
+    "static/js/runtime-main.fbc4c636.js",
     "static/js/2.350479e2.chunk.js",
     "static/css/main.6e6ff5d5.chunk.css",
     "static/js/main.b47b3b1d.chunk.js"
