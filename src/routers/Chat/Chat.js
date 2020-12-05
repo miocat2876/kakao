@@ -9,7 +9,7 @@ import SockJS from 'sockjs-client';
 //웹소켓 설정//
     var stompClient
     var sender = 'my';
-    var roomId = 'room1'
+    var roomId = 'room1';
 	
 	//연결//
 	function connect(){
@@ -31,14 +31,15 @@ import SockJS from 'sockjs-client';
 			});
 
 			//입장글//
-			stompClient.send("/app/chat/"+roomId, {}, sender + ' 님이 입장하였습니다');
+			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 입장하였습니다', 'name':''+sender}));
 		});
 	}
 	
 	//연결해제//
 	function disconnect() {
+            
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+roomId, {}, sender + ' 님이 나갔습니다');
+	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
@@ -79,11 +80,8 @@ const Chat = ({history}) => {
 
     const out = (e) =>{
         //방나가기 통신 넣기.
-        console.log('113213');
         disconnect();
-        console.log('113213');
-        $("#chat_view").prepend('<div class = "chat_cp"> <p class = "chat_p_p">'+sender+'님이 방을 나갔습니다.'+'</p></div>');
-        //라우터 넣기. 
+        //라우터 넣기.
         history.push('/chats');
     }
 
