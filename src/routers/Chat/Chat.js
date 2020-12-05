@@ -112,6 +112,7 @@ const Chat = ({history}) => {
     return(
        <div id="chat">
             <div id="chat_header">
+                
                     {/* <div className="header_1">
                         <div className="inlineStyle">
                         </div>
