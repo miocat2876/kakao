@@ -36,7 +36,6 @@ import SockJS from 'sockjs-client';
 	
 	//연결해제//
 	function disconnect() {
-            
 	    	if (stompClient !== null) {
 	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
@@ -45,7 +44,6 @@ import SockJS from 'sockjs-client';
 	
 	//메세지 전송//
 	function sendMessage(text){
-        
 		stompClient.send("/app/chat/"+roomId, {}, JSON.stringify({'message':text, 'name':''+sender}));
 	}
 	
