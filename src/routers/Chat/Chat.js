@@ -6,7 +6,7 @@ import 'react-stomp';
 import SockJS from 'sockjs-client';
 
 //웹소켓 설정//
-    var stompClient
+    var stompClient;
     var sender = 'my';
     var roomId = 'room1';
 	
@@ -63,7 +63,7 @@ import SockJS from 'sockjs-client';
 const Chat = ({history}) => { 
     const [chatInfo, setChat] = useState(
         {
-            member: "",
+            name: "",
             chat: ""
         }
     );
@@ -72,7 +72,7 @@ const Chat = ({history}) => {
         connect();
      }, []);
 
-    const { member, chat } = chatInfo;
+    const { name, chat } = chatInfo;
 
     const out = (e) =>{
         //방나가기 통신 넣기.
@@ -86,6 +86,7 @@ const Chat = ({history}) => {
         if (e.key == 'Enter') {
             console.log(chat);
     
+            if(chat != "")
             sendMessage(chat);
             
             const { value, name } = e.target;
