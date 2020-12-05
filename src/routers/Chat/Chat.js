@@ -9,6 +9,7 @@ import SockJS from 'sockjs-client';
 //웹소켓 설정//
     var stompClient
     var sender = 'my';
+    var roomId = 'room1'
 	
 	//연결//
 	function connect(){
@@ -18,7 +19,7 @@ import SockJS from 'sockjs-client';
 		
 		stompClient.connect({}, function(){
 			//메세지를 받는다. 각각의 구독//
-			stompClient.subscribe('/topic/chat/room1', function(msg){
+			stompClient.subscribe('/topic/chat/'+roomId, function(msg){
 
                 const response = JSON.parse(msg.body);
 
@@ -28,27 +29,18 @@ import SockJS from 'sockjs-client';
                     output(response.message);
                 }
 			});
-			
-			
-			
+
 			//입장글//
-			stompClient.send("/app/chat/room1", {}, '1' + ' is in chatroom');
+			stompClient.send("/app/chat/"+roomId, {}, sender + ' 님이 입장하였습니다');
 		});
 	}
 	
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/room1", {}, '1' + ' is out chatroom');
+	    		stompClient.send("/app/chat/"+roomId, {}, sender + ' 님이 나갔습니다');
 	    		stompClient.disconnect();
-	    		
-	    		window.location.href=chatoutaddress.value;
 	    	}
-	}
-	
-	//입력창 초기화//
-	function clear(input){
-		input.value = "";	
 	}
 	
 	//메세지 전송//
@@ -56,19 +48,19 @@ import SockJS from 'sockjs-client';
 		//send()부분에 매개변수로 MessageMapping을 입력//
         //세번째 인자로 보내고자 하는 정보를 JSON으로 설정하여 보낸다.(관련 VO존재 필요)//
         
-		stompClient.send("/app/chat/room1", {}, JSON.stringify({'message':text, 'name':''+sender}));
+		stompClient.send("/app/chat/"+roomId, {}, JSON.stringify({'message':text, 'name':''+sender}));
 	}
 	
 
-function output(value){
-    //서버에서 데이터 받기
-    $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
-}
+    function output(value){
+        //서버에서 데이터 받기
+        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
+    }
 
-function input(value){
-    //서버에 데이터 전송
-    $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
-}
+    function input(value){
+        //서버에 데이터 전송
+        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
+    }
 
 
 const Chat = ({history}) => { 
@@ -87,6 +79,9 @@ const Chat = ({history}) => {
 
     const out = (e) =>{
         //방나가기 통신 넣기.
+        console.log('113213');
+        disconnect();
+        console.log('113213');
         $("#chat_view").prepend('<div class = "chat_cp"> <p class = "chat_p_p">'+sender+'님이 방을 나갔습니다.'+'</p></div>');
         //라우터 넣기. 
         history.push('/chats');
