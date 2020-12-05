@@ -5,7 +5,6 @@ window.$ = window.jQuery = jQuery;
 import 'react-stomp';
 import SockJS from 'sockjs-client';
 
-
 //웹소켓 설정//
     var stompClient
     var sender = 'my';
@@ -46,20 +45,17 @@ import SockJS from 'sockjs-client';
 	
 	//메세지 전송//
 	function sendMessage(text){
-		//send()부분에 매개변수로 MessageMapping을 입력//
-        //세번째 인자로 보내고자 하는 정보를 JSON으로 설정하여 보낸다.(관련 VO존재 필요)//
         
 		stompClient.send("/app/chat/"+roomId, {}, JSON.stringify({'message':text, 'name':''+sender}));
 	}
 	
-
+    //상대방메세지
     function output(value){
-        //서버에서 데이터 받기
         $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
     }
 
+    //본인메세지
     function input(value){
-        //서버에 데이터 전송
         $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
     }
 
