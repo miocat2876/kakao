@@ -1,7 +1,7 @@
 {
   "name": "kakaoReact",
   "version": "1.0.0",
-  "homepage": "http://kakaomirror.cf/",
+  "homepage": "http://webcloneproject.s3.ap-northeast-2.amazonaws.com/",
   "description": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -14,7 +14,7 @@
     "build": "react-scripts build",
     "stop": "webpack-dev-server",
     "deploy": "gh-pages -d build",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build" 
   },
   "keywords": [],
   "author": "",
