@@ -25,21 +25,22 @@ import {useLocation } from 'react-router-dom';
                 const response = JSON.parse(msg.body);
 
                 if(response.name == sender){ //본인아이디와 비교
-                    input(response.message);
+                    console.log(response);
+                    input(response);
                 }else{
-                    output(response.message);
+                    output(response);
                 }
 			});
 
 			//입장글//
-			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 입장하였습니다', 'name':''+sender}));
+			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':' 님이 입장하였습니다', 'name':''+sender}));
 		});
 	}
 	
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 나갔습니다', 'name':''+sender}));
+	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + '님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
@@ -51,12 +52,12 @@ import {useLocation } from 'react-router-dom';
 	
     //상대방메세지
     function output(value){
-        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+' '+value.message+'</p></div>');
     }
 
     //본인메세지
     function input(value){
-        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+' '+value.message+'</p></div>');
     }
 
 
@@ -157,8 +158,9 @@ const Chat = ({history}) => {
                     type="text" 
                     name="chat" 
                     value={chat} 
-                    onChange={handleChange} 
+                    onChange={handleChange}
                     onKeyUp={handleKeyUp}
+                    autocomplete="off"
                 /> 
             </div>
         </div>
