@@ -2,25 +2,12 @@ import React, { useState , useEffect } from 'react';
 import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
 import {useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Chats = ({ history }) => {
 
-    const [lists, setList] = useState([{
-        image : 'aa.jpg',
-        title : "1번",
-        chatNo : "1"
-    },{
-    
-        image : 'bb.jpg',
-        title : "2번",
-        chatNo : "2"
-    },{
-    
-        image : 'cc.jpg',
-        title : "3번",
-        chatNo : "3"
-    }]);
+    const [lists, setList] = [];
 
     const location =  useLocation();
 
@@ -45,11 +32,11 @@ const Chats = ({ history }) => {
     }
 
     const list = ()=>{
-        axios.post('http://3.35.140.126:9000/chat/room-list', 
+        axios.get('http://3.35.140.126:9000/chat/room-list', 
             {userId : location.state.userId}
         )
         .then(function (response) {
-            setList(response);
+            setList(response.data.list);
         })
         .catch(function (error) {
             console.log(error);
@@ -67,14 +54,8 @@ const Chats = ({ history }) => {
                 </div>
             </div>
     );
-
-    console.log(chatList);
-
-    
-
     useEffect(() => {
-        //list();
-       console.log(location.state);
+        list();
     }, []);
 
     return (
