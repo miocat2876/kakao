@@ -52,12 +52,12 @@ import {useLocation } from 'react-router-dom';
 	
     //상대방메세지
     function output(value){
-        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+' '+value.message+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">{'+value.name+'} '+value.message+'</p></div>');
     }
 
     //본인메세지
     function input(value){
-        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+' '+value.message+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">{'+value.name+'} '+value.message+'</p></div>');
     }
 
 
