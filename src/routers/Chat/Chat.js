@@ -71,6 +71,7 @@ const Chat = ({history}) => {
     const location =  useLocation();
 
     useEffect(() => {
+        console.log(location.state);
         sender = location.state.userId;
         roomId = location.state.roomId;
         connect();
@@ -82,7 +83,11 @@ const Chat = ({history}) => {
         //방나가기 통신 넣기.
         disconnect();
         //라우터 넣기.
-        history.push('/chats');
+        history.push({
+            pathname: '/chats',
+            search: '?query=abc',
+            state: {userId : location.state.userId}
+          });
     }
 
 

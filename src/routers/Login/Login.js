@@ -25,19 +25,19 @@ const Login = ({ history }) => {
         let val = JSON.parse(localStorage.getItem('login'));
         if(val!= null && Object.keys(val).length>0){
             setLogin(val);
-            callback(val.loginChk);
+            callback(val);
         }
     }
 
     useEffect(() => {
-        getLocal(function(loginChk){
+        getLocal(function(val){
             setTimeout(() => {
-                if(loginChk===true){
+                if(val.loginChk===true){
                     if(confirm("로그인 하시겠습니까?")){
-                        handleClick();
+                        handleClick(val);
                     }
                 }
-            }, 100);
+            }, 1000);
         });
         
            
@@ -59,9 +59,11 @@ const Login = ({ history }) => {
         );
     }
 
-    const handleClick = () => {
+    const handleClick = (val) => {
+        if(val==undefined)
+            val = login;
         axios.post('http://3.35.140.126:9000/user/login', 
-            login
+            val
           )
           .then(function (response) {
                if(response.data.return !== "fail"){
@@ -119,7 +121,7 @@ const Login = ({ history }) => {
                     />
                 </div>
                 <div id="login_button">
-                    <button onClick={handleClick}><p>로그인</p></button>
+                    <button onClick={()=>{handleClick(login)}}><p>로그인</p></button>
                 </div>
                 <div id="login_auto">
                     <div id="loginAutoSection">
