@@ -7,7 +7,7 @@ import SockJS from 'sockjs-client';
 
 
 //웹소켓 설정//
-    var stompClient
+    var stompClient;
     var sender = 'my';
     var roomId = 'room1'
 	
@@ -19,7 +19,7 @@ import SockJS from 'sockjs-client';
 		
 		stompClient.connect({}, function(){
 			//메세지를 받는다. 각각의 구독//
-			stompClient.subscribe('/topic/chat/'+roomId, function(msg){
+			stompClient.subscribe('/topic/chat/' + roomId, function(msg){
 
                 const response = JSON.parse(msg.body);
 
@@ -79,37 +79,34 @@ const Chat = ({history}) => {
 
     const out = (e) =>{
         //방나가기 통신 넣기.
-        console.log('113213');
         disconnect();
-        console.log('113213');
         $("#chat_view").prepend('<div class = "chat_cp"> <p class = "chat_p_p">'+sender+'님이 방을 나갔습니다.'+'</p></div>');
         //라우터 넣기. 
         history.push('/chats');
     }
 
-
+    //채팅 입력
     const handleKeyUp = (e) => {
         if (e.key == 'Enter') {
             console.log(chat);
-    
             sendMessage(chat);
             
-            const { value, name } = e.target;
-            setChat({
-                ...chatInfo,
-                [name]: ''
-            });
+            // const { value, name } = e.target;
+            // setChat({
+            //     ...chatInfo,
+            //     [name]: ''
+            // });
         }
     }
     
-    const handleChange = (e) => {
-        console.log('handleChange');
-        const { value, name } = e.target;
-        setChat({
-            ...chatInfo,
-            [name]: value
-        });
-    }
+    // const handleChange = (e) => {
+    //     console.log('handleChange');
+    //     const { value, name } = e.target;
+    //     setChat({
+    //         ...chatInfo,
+    //         [name]: value
+    //     });
+    // }
 
     return(
        <div id="chat">
@@ -137,7 +134,7 @@ const Chat = ({history}) => {
                     type="text" 
                     name="chat" 
                     value={chat} 
-                    onChange={handleChange} 
+                    // onChange={handleChange} 
                     onKeyUp={handleKeyUp}
                 /> 
             </div>

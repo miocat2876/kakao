@@ -38,6 +38,8 @@ const Login = ({ history }) => {
             ...login,
             [name]: value
         });
+
+        console.log({history});
     }
 
     const signUp = () => {

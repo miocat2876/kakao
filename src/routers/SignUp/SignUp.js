@@ -97,7 +97,8 @@ const SignUp = ({history}) =>{
     };
 
     const changeBoxColor = {
-        color: (valid === 'true') ? "blue" : 'red'
+        border: (valid === 'true') ? "2px solid lightgreen" : "2px solid red",
+        color: (valid === 'true') ? "" : "red"
     };
 
     const checkStyle = {
@@ -121,8 +122,8 @@ const SignUp = ({history}) =>{
                             onChange={onChangeValue}
                             name="id">
                         </input>
-                        {(valid === 'true' && <div style={divStyle}>사용 가능한 아이디입니다.</div>)}
-                        {(valid === 'false' && <div style={divStyle}>이미 사용중인 아이디입니다.</div>)}
+                        {/* {/* {(valid === 'true' && <div style={divStyle}>사용 가능한 아이디입니다.</div>)} */}
+                        {/* {(valid === 'false' && <div style={divStyle}>이미 사용중인 아이디입니다.</div>)} */}
                         <input
                             type="password"
                             className="box"
@@ -154,23 +155,24 @@ const SignUp = ({history}) =>{
                             onChange={onChangeValue}
                             name="phone">
                         </input>
-                        <div className="imgConatiner">
+                        {/* <div className="imgContiner">
                             <input
-                                className="imgFile"
+                                type="file"
+                                id="imgFile"
                                 placeholder="프로필 사진"
                                 value={img}
                                 onChange={onChangeValue}
                                 name="img">
                             </input>
-                            {/* <input 
-                                className="imgFile"
-                                type="file"
-                                value="file upload"
-                                name="file">
-                            </input> */}
-                            <div className="imgFileBtn">파일</div>
+                            <label for="imgFile">파일</label>
+                        </div> */}
+                        <div className="imgContainer">
+                            <label>
+                                파일선택
+                                <input type="file" onChange="javascript:document.getElementById('fileRoute').value=this.value" />
+                            </label>
+                            <input type="text" readonly="readonly" id="fileRoute"/>
                         </div>
-                        
                         </div>
                         <button className="btn" type="submit" onClick={submit}>sign up</button>
                     </div>
