@@ -24,7 +24,6 @@ const Login = ({ history }) => {
     const getLocal = (callback) =>{
         let val = JSON.parse(localStorage.getItem('login'));
         if(Object.keys(val).length>0){
-            console.log(val);
             setLogin(val);
             callback(val.loginChk);
         }
@@ -79,7 +78,6 @@ const Login = ({ history }) => {
 
     const handleChange = (e) => {
         const { value, name } = e.target;
-        console.log(loginChk);
         if(e.target.type =="checkbox"){
             setLogin({
                 ...login,
