@@ -24,10 +24,10 @@ const Login = ({ history }) => {
           )
           .then(function (response) {
                if(response.data.fail !== "fail")
-                goChats();
+                goChats(); 
           })
           .catch(function (error) {
-            console.log(error);
+                console.log(error);
           });
     }
 
