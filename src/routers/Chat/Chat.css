@@ -82,7 +82,7 @@
 .chat_o_p{
     padding: 7px;
     width: fit-content;
-    background: yellowgreen;
+    background: white;
     border-radius: 30px;
     font-size: 13px;
 }
@@ -90,7 +90,7 @@
 .chat_c_p{
     padding: 7px;
     width: fit-content;
-    background: white;
+    background: yellow;
     border-radius: 30px;
     font-size: 13px;
 }
