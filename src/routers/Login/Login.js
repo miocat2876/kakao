@@ -14,9 +14,9 @@ const Login = ({ history }) => {
 
     const { id, pw, loginChk } = login;
 
-    const setLocal = () =>{
-        if(loginChk==true)
-            localStorage.setItem('login', JSON.stringify(login));
+    const setLocal = (val) =>{
+        if(val.loginChk==true)
+            localStorage.setItem('login', JSON.stringify(val));
         else
             localStorage.setItem('login', JSON.stringify({id: "",pw: "",loginChk : false}));
     }
@@ -34,19 +34,13 @@ const Login = ({ history }) => {
             setTimeout(() => {
                 if(val.loginChk===true){
                     if(confirm("로그인 하시겠습니까?")){
+                        setLocal(val);
                         handleClick(val);
                     }
                 }
             }, 1000);
         });
-        
-           
-        
-       
-
     }, []);
-
-
 
     const goChats = (id) =>{
         history.push(
@@ -67,8 +61,8 @@ const Login = ({ history }) => {
           )
           .then(function (response) {
                if(response.data.return !== "fail"){
-                    setLocal();
-                    goChats(login.id);
+                    setLocal(val);
+                    goChats(val.id);
                }else{
                     alert('로그인정보가 일치하지 않습니다.');
                }
