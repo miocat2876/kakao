@@ -4,8 +4,10 @@ import jQuery from "jquery";
 window.$ = window.jQuery = jQuery;
 import 'react-stomp';
 import SockJS from 'sockjs-client';
+import {useLocation } from 'react-router-dom';
 
 //웹소켓 설정//
+
     var stompClient;
     var sender = 'my';
     var roomId = 'room1';
@@ -66,7 +68,11 @@ const Chat = ({history}) => {
         }
     );
 
+    const location =  useLocation();
+
     useEffect(() => {
+        sender = location.state.userId;
+        roomId = location.state.roomId;
         connect();
      }, []);
 

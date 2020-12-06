@@ -13,18 +13,24 @@ const Login = ({ history }) => {
     
     const { id, pw } = login;
 
-    const goChats = () =>{
-        history.push('/chats');
+    const goChats = (id) =>{
+        history.push(
+            {
+            pathname: '/chats',
+            search: '?query=abc',
+            state: { userId: id }
+          }
+        
+        );
     }
 
     const handleClick = () => {
-        // console.log(state);
         axios.post('http://3.35.140.126:9000/user/login', 
             login
           )
           .then(function (response) {
-               if(response.data.fail !== "fail")
-                    goChats(); 
+               if(response.data.fail === "fail")
+                    goChats(login.id);
                 else
                     alert('로그인정보가 일치하지 않습니다.');
           })

@@ -1,24 +1,11 @@
 import React, { useState , useEffect } from 'react';
 import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
+import {useLocation } from 'react-router-dom';
 
 
 const Chats = ({ history }) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const enterChat = () => {
-        history.push('/chat/default');
-    }
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-    }
-    
     const [lists, setList] = useState([{
         image : 'aa.jpg',
         title : "1번",
@@ -35,6 +22,40 @@ const Chats = ({ history }) => {
         chatNo : "3"
     }]);
 
+    const location =  useLocation();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const enterChat = (e,value) => {
+        console.log(e);
+        console.log(value);
+        history.push({
+            pathname: '/chat/default',
+            search: '?query=abc',
+            state: value
+          });
+    }
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    }
+
+    const list = ()=>{
+        axios.post('http://3.35.140.126:9000/chat/room-list', 
+            {userId : location.state.userId}
+        )
+        .then(function (response) {
+            setList(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+    });
+    }
+    
     const chatList = lists.map((list, index) =>
             <div className="chatBoxInner" key={index}>
                 <div className="leftSection">
@@ -42,15 +63,18 @@ const Chats = ({ history }) => {
                     <div className="title">{list.title}</div>
                 </div>
                 <div className="rightSection">
-                    <button className="enterBtn" type="submit" onClick={enterChat}>입장하기</button>
+                    <button className="enterBtn" type="submit" onClick={(e) => {enterChat(e,{roomId:index,userId:location.state.userId})}}>입장하기</button>
                 </div>
             </div>
     );
 
     console.log(chatList);
 
+    
+
     useEffect(() => {
-       console.log(lists.length);
+        //list();
+       console.log(location.state);
     }, []);
 
     return (
