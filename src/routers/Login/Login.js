@@ -23,11 +23,10 @@ const Login = ({ history }) => {
             login
           )
           .then(function (response) {
-            //   if(response.data.fail !== "fail")
+               if(response.data.fail !== "fail")
                 goChats();
           })
           .catch(function (error) {
-                goChats();
             console.log(error);
           });
     }
