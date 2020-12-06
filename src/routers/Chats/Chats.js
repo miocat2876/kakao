@@ -29,9 +29,8 @@ const Chats = ({ history }) => {
     }
 
     const list = ()=>{
-        console.log(userId);
         axios.get('http://3.35.140.126:9000/chat/room-list', 
-            {userId : userId}
+            {userId : location.state.userId}
         )
         .then(function (response) {
             setList([...response.data.list,{

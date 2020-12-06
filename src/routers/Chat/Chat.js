@@ -71,6 +71,21 @@ const Chat = ({history}) => {
     const location =  useLocation();
 
     useEffect(() => {
+
+        window.onpopstate = function (event) {
+
+            disconnect();
+            //라우터 넣기.
+            history.push({
+                pathname: '/chats',
+                search: '?query=abc',
+                state: {userId : location.state.userId}
+            });
+            
+        }
+          
+        
+
         console.log(location.state);
         sender = location.state.userId;
         roomId = location.state.roomId;
