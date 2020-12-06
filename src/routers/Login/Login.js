@@ -29,7 +29,7 @@ const Login = ({ history }) => {
             login
           )
           .then(function (response) {
-               if(response.data.fail === "fail")
+               if(response.data.return === "fail")
                     goChats(login.id);
                 else
                     alert('로그인정보가 일치하지 않습니다.');

@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Chats = ({ history }) => {
 
-    const [lists, setList] = [];
+    const [lists, setList] = useState([]);
 
     const location =  useLocation();
 
