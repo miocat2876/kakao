@@ -37,7 +37,7 @@ const Login = ({ history }) => {
                         handleClick();
                     }
                 }
-            }, 1000);
+            }, 100);
         });
         
            
