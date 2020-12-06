@@ -25,6 +25,8 @@ const Login = ({ history }) => {
           .then(function (response) {
                if(response.data.fail !== "fail")
                 goChats(); 
+                else
+                alert('로그인정보가 일치하지 않습니다.');
           })
           .catch(function (error) {
                 console.log(error);
