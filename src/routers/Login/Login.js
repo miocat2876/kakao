@@ -23,7 +23,7 @@ const Login = ({ history }) => {
 
     const getLocal = (callback) =>{
         let val = JSON.parse(localStorage.getItem('login'));
-        if(val!= null || Object.keys(val).length>0){
+        if(val!= null && Object.keys(val).length>0){
             setLogin(val);
             callback(val.loginChk);
         }
