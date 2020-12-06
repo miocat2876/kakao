@@ -36,7 +36,21 @@ const Chats = ({ history }) => {
             {userId : location.state.userId}
         )
         .then(function (response) {
-            setList(response.data.list);
+            setList([...response.data.list,{
+                image : 'aa.jpg',
+                title : "1번",
+                chatNo : "1"
+            },{
+            
+                image : 'bb.jpg',
+                title : "2번",
+                chatNo : "2"
+            },{
+            
+                image : 'cc.jpg',
+                title : "3번",
+                chatNo : "3"
+            }]);
         })
         .catch(function (error) {
             console.log(error);
