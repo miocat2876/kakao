@@ -14,40 +14,33 @@ const Login = ({ history }) => {
 
     const { id, pw, loginChk } = login;
 
-    const setLocal = () =>{
-        if(loginChk==true)
-            localStorage.setItem('login', JSON.stringify(login));
+    const setLocal = (val) =>{
+        if(val.loginChk==true)
+            localStorage.setItem('login', JSON.stringify(val));
         else
             localStorage.setItem('login', JSON.stringify({id: "",pw: "",loginChk : false}));
     }
 
     const getLocal = (callback) =>{
         let val = JSON.parse(localStorage.getItem('login'));
-        if(Object.keys(val).length>0){
-            console.log(val);
+        if(val!= null && Object.keys(val).length>0){
             setLogin(val);
-            callback(val.loginChk);
+            callback(val);
         }
     }
 
     useEffect(() => {
-        getLocal(function(loginChk){
+        getLocal(function(val){
             setTimeout(() => {
-                if(loginChk===true){
+                if(val.loginChk===true){
                     if(confirm("로그인 하시겠습니까?")){
-                        handleClick();
+                        setLocal(val);
+                        handleClick(val);
                     }
                 }
-            }, 1000);
+            }, 100);
         });
-        
-           
-        
-       
-
     }, []);
-
-
 
     const goChats = (id) =>{
         history.push(
@@ -60,14 +53,16 @@ const Login = ({ history }) => {
         );
     }
 
-    const handleClick = () => {
+    const handleClick = (val) => {
+        if(val==undefined)
+            val = login;
         axios.post('http://3.35.140.126:9000/user/login', 
-            login
+            val
           )
           .then(function (response) {
-               if(response.data.return !== "fail"){
-                    setLocal();
-                    goChats(login.id);
+               if(true){//response.data.return !== "fail"
+                    setLocal(val);
+                    goChats(val.id);
                }else{
                     alert('로그인정보가 일치하지 않습니다.');
                }
@@ -80,6 +75,7 @@ const Login = ({ history }) => {
     const handleChange = (e) => {
         const { value, name } = e.target;
 <<<<<<< HEAD
+<<<<<<< HEAD
         setLogin({
             ...login,
             [name]: value
@@ -88,6 +84,8 @@ const Login = ({ history }) => {
         console.log({history});
 =======
         console.log(loginChk);
+=======
+>>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
         if(e.target.type =="checkbox"){
             setLogin({
                 ...login,
@@ -130,7 +128,7 @@ const Login = ({ history }) => {
                     />
                 </div>
                 <div id="login_button">
-                    <button onClick={handleClick}><p>로그인</p></button>
+                    <button onClick={()=>{handleClick(login)}}><p>로그인</p></button>
                 </div>
                 <div id="login_auto">
                     <div id="loginAutoSection">

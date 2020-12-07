@@ -4,9 +4,8 @@ import MakeChat from '../MakeChat/MakeChat';
 import {useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Chats = ({ history }) => {
-
+    var userId;
     const [lists, setList] = useState([]);
 
     const location =  useLocation();
@@ -14,8 +13,6 @@ const Chats = ({ history }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const enterChat = (e,value) => {
-        console.log(e);
-        console.log(value);
         history.push({
             pathname: '/chat/default',
             search: '?query=abc',
@@ -60,7 +57,7 @@ const Chats = ({ history }) => {
     const chatList = lists.map((list, index) =>
             <div className="chatBoxInner" key={index}>
                 <div className="leftSection">
-                    <div className="img" ></div>
+                    <div className="img" >{userId}</div>
                     <div className="title">{list.title}</div>
                 </div>
                 <div className="rightSection">

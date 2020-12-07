@@ -79,10 +79,18 @@
     margin-top: 7px;
 }
 
-.chat_p_p{
+.chat_o_p{
     padding: 7px;
     width: fit-content;
     background: white;
+    border-radius: 30px;
+    font-size: 13px;
+}
+
+.chat_c_p{
+    padding: 7px;
+    width: fit-content;
+    background: yellow;
     border-radius: 30px;
     font-size: 13px;
 }

@@ -28,21 +28,22 @@ import {useLocation } from 'react-router-dom';
                 const response = JSON.parse(msg.body);
 
                 if(response.name == sender){ //본인아이디와 비교
-                    input(response.message);
+                    console.log(response);
+                    input(response);
                 }else{
-                    output(response.message);
+                    output(response);
                 }
 			});
 
 			//입장글//
-			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 입장하였습니다', 'name':''+sender}));
+			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':' 님이 입장하였습니다', 'name':''+sender}));
 		});
 	}
 	
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + ' 님이 나갔습니다', 'name':''+sender}));
+	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + '님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
@@ -54,12 +55,12 @@ import {useLocation } from 'react-router-dom';
 	
     //상대방메세지
     function output(value){
-        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">{'+value.name+'} '+value.message+'</p></div>');
     }
 
     //본인메세지
     function input(value){
-        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">{'+value.name+'} '+value.message+'</p></div>');
     }
 
 
@@ -74,6 +75,22 @@ const Chat = ({history}) => {
     const location =  useLocation();
 
     useEffect(() => {
+
+        window.onpopstate = function (event) {
+
+            disconnect();
+            //라우터 넣기.
+            history.push({
+                pathname: '/chats',
+                search: '?query=abc',
+                state: {userId : location.state.userId}
+            });
+            
+        }
+          
+        
+
+        console.log(location.state);
         sender = location.state.userId;
         roomId = location.state.roomId;
         connect();
@@ -89,8 +106,16 @@ const Chat = ({history}) => {
         //라우터 넣기. 
 =======
         //라우터 넣기.
+<<<<<<< HEAD
 >>>>>>> 7b2760d94f5f766697ac06889d4148f8be9ef7c8
         history.push('/chats');
+=======
+        history.push({
+            pathname: '/chats',
+            search: '?query=abc',
+            state: {userId : location.state.userId}
+          });
+>>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
     }
 
     //채팅 입력
@@ -148,8 +173,13 @@ const Chat = ({history}) => {
                     type="text" 
                     name="chat" 
                     value={chat} 
+<<<<<<< HEAD
                     // onChange={handleChange} 
+=======
+                    onChange={handleChange}
+>>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
                     onKeyUp={handleKeyUp}
+                    autocomplete="off"
                 /> 
             </div>
         </div>
