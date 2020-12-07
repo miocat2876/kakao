@@ -7,10 +7,7 @@ import SockJS from 'sockjs-client';
 import {useLocation } from 'react-router-dom';
 
 //웹소켓 설정//
-<<<<<<< HEAD
-=======
 
->>>>>>> 7b2760d94f5f766697ac06889d4148f8be9ef7c8
     var stompClient;
     var sender = 'my';
     var roomId = 'room1';
@@ -23,7 +20,7 @@ import {useLocation } from 'react-router-dom';
 		
 		stompClient.connect({}, function(){
 			//메세지를 받는다. 각각의 구독//
-			stompClient.subscribe('/topic/chat/' + roomId, function(msg){
+			stompClient.subscribe('/topic/chat/'+roomId, function(msg){
 
                 const response = JSON.parse(msg.body);
 
@@ -101,50 +98,38 @@ const Chat = ({history}) => {
     const out = (e) =>{
         //방나가기 통신 넣기.
         disconnect();
-<<<<<<< HEAD
-        $("#chat_view").prepend('<div class = "chat_cp"> <p class = "chat_p_p">'+sender+'님이 방을 나갔습니다.'+'</p></div>');
-        //라우터 넣기. 
-=======
         //라우터 넣기.
-<<<<<<< HEAD
->>>>>>> 7b2760d94f5f766697ac06889d4148f8be9ef7c8
-        history.push('/chats');
-=======
         history.push({
             pathname: '/chats',
             search: '?query=abc',
             state: {userId : location.state.userId}
           });
->>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
     }
 
-    //채팅 입력
+
     const handleKeyUp = (e) => {
         if (e.key == 'Enter') {
             console.log(chat);
-<<<<<<< HEAD
-=======
     
             if(chat != "")
->>>>>>> 7b2760d94f5f766697ac06889d4148f8be9ef7c8
             sendMessage(chat);
             
-            // const { value, name } = e.target;
-            // setChat({
-            //     ...chatInfo,
-            //     [name]: ''
-            // });
+            const { value, name } = e.target;
+            setChat({
+                ...chatInfo,
+                [name]: ''
+            });
         }
     }
     
-    // const handleChange = (e) => {
-    //     console.log('handleChange');
-    //     const { value, name } = e.target;
-    //     setChat({
-    //         ...chatInfo,
-    //         [name]: value
-    //     });
-    // }
+    const handleChange = (e) => {
+        console.log('handleChange');
+        const { value, name } = e.target;
+        setChat({
+            ...chatInfo,
+            [name]: value
+        });
+    }
 
     return(
        <div id="chat">
@@ -173,11 +158,7 @@ const Chat = ({history}) => {
                     type="text" 
                     name="chat" 
                     value={chat} 
-<<<<<<< HEAD
-                    // onChange={handleChange} 
-=======
                     onChange={handleChange}
->>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
                     onKeyUp={handleKeyUp}
                     autocomplete="off"
                 /> 

@@ -74,18 +74,6 @@ const Login = ({ history }) => {
 
     const handleChange = (e) => {
         const { value, name } = e.target;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        setLogin({
-            ...login,
-            [name]: value
-        });
-
-        console.log({history});
-=======
-        console.log(loginChk);
-=======
->>>>>>> 78d99b3f40c817e6d5f1c036c9d48da7f46180d9
         if(e.target.type =="checkbox"){
             setLogin({
                 ...login,
@@ -97,7 +85,6 @@ const Login = ({ history }) => {
                 [name]: value
             });
         }
->>>>>>> 7b2760d94f5f766697ac06889d4148f8be9ef7c8
     }
 
     const signUp = () => {
