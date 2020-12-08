@@ -11,7 +11,6 @@ const SignUp = ({history}) =>{
         name: "",
         phone: "",
         img: ""
-        // let bgColor;
     });
 
     const [valid, setValid] = useState('');
@@ -27,30 +26,26 @@ const SignUp = ({history}) =>{
             [name]: value
         });
 
-        if ( name === 'id' ){ //아이디 값 중복 체크
-            
-            axios.post('http://3.35.140.126:9000/user/duplicate_check',
-             id
-            )
-            .then(function(response){  
-                console.log('success');
-
-                if(response === 'success'){
-                    //성공
-                }
-                else{
-                    //실패
-                }
-                // const {data : {errorMsg}} = response;
-                setValid('true');
-                
-            })
-            .catch(function(error){
-                console.log('error');
-                setValid('false');
-                // alert('이미 사용중인 아이디입니다.');
-            })
+        if( id !== '' ){
+            if ( name === 'id' ){ //아이디 값 중복 체크
+                axios.get('http://3.35.140.126:9000/user/duplicate_check', id)
+                .then(function(response){  
+                    console.log(response.data.return);
+                    if(response.data.return === 'success'){
+                        //중복 있음
+                        setValid('true');
+                    }
+                    else{
+                        //중복 없음
+                        setValid('false');
+                    }
+                })
+                .catch(function(error){ //응답에러 
+                    alert(error);
+                })
+            }
         }
+        
     }
 
     const submit = (ev) => {
@@ -97,8 +92,8 @@ const SignUp = ({history}) =>{
     };
 
     const changeBoxColor = {
-        border: (valid === 'true') ? "2px solid lightgreen" : "2px solid red",
-        color: (valid === 'true') ? "" : "red"
+        border: (valid === 'true') ? "2px solid lightseagreen" : "2px solid tomato",
+        color: (valid === 'true') ? "lightseagreen" : "tomato"
     };
 
     const checkStyle = {
