@@ -60,7 +60,7 @@ const Login = ({ history }) => {
             val
           )
           .then(function (response) {
-               if(true){//response.data.return !== "fail"
+               if(response.data.return !== "fail"){//response.data.return !== "fail"
                     setLocal(val);
                     goChats(val.id);
                }else{
