@@ -27,11 +27,12 @@ const SignUp = ({history}) =>{
         });
 
         if( id !== '' ){
+            console.log('input');
             if ( name === 'id' ){ //아이디 값 중복 체크
-                axios.get('http://3.35.140.126:9000/user/duplicate_check', id)
+                axios.get('http://3.35.140.126:9000/user/duplicate_check', {params: {id: id}})
                 .then(function(response){  
-                    console.log(response.data.return);
-                    if(response.data.return === 'success'){
+                    console.log(response.data.result);
+                    if(response.data.result === 'success'){
                         //중복 있음
                         setValid('true');
                     }
@@ -92,8 +93,8 @@ const SignUp = ({history}) =>{
     };
 
     const changeBoxColor = {
-        border: (valid === 'true') ? "2px solid lightseagreen" : "2px solid tomato",
-        color: (valid === 'true') ? "lightseagreen" : "tomato"
+        border: (valid === 'true') ? "2px solid lightseagreen" : (valid === 'false') ? "2px solid tomato" : "1px solid gray",
+        color: (valid === 'true') ? "lightseagreen" : (valid === 'false') ? "tomato" : "black"
     };
 
     const checkStyle = {
@@ -161,13 +162,13 @@ const SignUp = ({history}) =>{
                             </input>
                             <label for="imgFile">파일</label>
                         </div> */}
-                        <div className="imgContainer">
+                        {/* <div className="imgContainer">
                             <label>
                                 파일선택
                                 <input type="file" onChange="javascript:document.getElementById('fileRoute').value=this.value" />
                             </label>
                             <input type="text" readonly="readonly" id="fileRoute"/>
-                        </div>
+                        </div> */}
                         </div>
                         <button className="btn" type="submit" onClick={submit}>sign up</button>
                     </div>
