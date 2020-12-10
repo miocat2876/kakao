@@ -41,7 +41,7 @@ import {useLocation } from 'react-router-dom';
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':sender  + '님이 나갔습니다', 'name':''+sender}));
+	    		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':'님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
