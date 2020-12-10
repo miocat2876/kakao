@@ -1,21 +1,18 @@
 import React, { useState , useEffect } from 'react';
 import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
-import {useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Chats = ({ history }) => {
     var userId;
-    const [lists, setList] = useState([]);
-
+    const [lists, setLists] = useState([]);
     const location =  useLocation();
-
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const enterChat = (e,value) => {
+    const enterChat = (e, value) => {
         history.push({
             pathname: '/chat/default',
-            search: '?query=abc',
             state: value
           });
     }
@@ -33,20 +30,20 @@ const Chats = ({ history }) => {
             {userId : location.state.userId}
         )
         .then(function (response) {
-            setList([...response.data.list,{
+            setLists([...lists,{
                 image : 'aa.jpg',
-                title : "1번",
-                chatNo : "1"
+                title : "chat1",
+                chatId : "1"
             },{
             
                 image : 'bb.jpg',
-                title : "2번",
-                chatNo : "2"
+                title : "chat2",
+                chatId : "2"
             },{
             
                 image : 'cc.jpg',
-                title : "3번",
-                chatNo : "3"
+                title : "chat3",
+                chatId : "3"
             }]);
         })
         .catch(function (error) {
@@ -61,7 +58,7 @@ const Chats = ({ history }) => {
                     <div className="title">{list.title}</div>
                 </div>
                 <div className="rightSection">
-                    <button className="enterBtn" type="submit" onClick={(e) => {enterChat(e,{roomId:index,userId:location.state.userId})}}>입장하기</button>
+                    <button className="enterBtn" type="submit" onClick={(e) => {enterChat(e,{roomId:index,userId:location.state.userId})}}></button>
                 </div>
             </div>
     );
@@ -74,8 +71,6 @@ const Chats = ({ history }) => {
             <div className="header">
                 <div id="title">채팅</div>
                 <div id='icons'>
-                    <li></li>
-                    <li></li>
                     <li></li>
                     <li></li>
                 </div>

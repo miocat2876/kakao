@@ -17,27 +17,35 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
+    padding: 0 0 0 10px;
 }
 .left{
     height: 50px;
-    width: 100px;
+    width: fit-content;
     line-height: 50px;
     text-align: center;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .right{
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 50px;
+    width: fit-content;
 }
 
 .gohome{
-    width: 80px;
-    height: 40px;
+    width: 34px;
+    height: 50px;
     background: #B2C7D9;
     border: none;
     font-size: 13px;
+    background-image: url(../../images/right-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
 }
 .gohome:hover{
     cursor: pointer;

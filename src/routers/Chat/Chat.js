@@ -10,7 +10,8 @@ import {useLocation } from 'react-router-dom';
 
     var stompClient;
     var sender = 'my';
-    var roomId = 'room1';
+    var chatId = '1';
+    var title = 'chat1';
 	
 	//연결//
 	function connect(){
@@ -20,7 +21,7 @@ import {useLocation } from 'react-router-dom';
 		
 		stompClient.connect({}, function(){
 			//메세지를 받는다. 각각의 구독//
-			stompClient.subscribe('/topic/chat/'+roomId, function(msg){
+			stompClient.subscribe('/topic/chat/'+chatId, function(msg){
 
                 const response = JSON.parse(msg.body);
 
@@ -33,31 +34,31 @@ import {useLocation } from 'react-router-dom';
 			});
 
 			//입장글//
-			stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':' 님이 입장하였습니다', 'name':''+sender}));
+			stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':' 님이 입장하였습니다', 'name':''+sender}));
 		});
 	}
 	
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+roomId, {},JSON.stringify({'message':sender  + '님이 나갔습니다', 'name':''+sender}));
+	    		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':sender  + '님이 나갔습니다', 'name':''+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
 	
 	//메세지 전송//
 	function sendMessage(text){
-		stompClient.send("/app/chat/"+roomId, {}, JSON.stringify({'message':text, 'name':''+sender}));
+		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':text, 'name':''+sender}));
 	}
 	
     //상대방메세지
     function output(value){
-        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">{'+value.name+'} '+value.message+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
     }
 
     //본인메세지
     function input(value){
-        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">{'+value.name+'} '+value.message+'</p></div>');
+        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
     }
 
 
@@ -79,7 +80,6 @@ const Chat = ({history}) => {
             //라우터 넣기.
             history.push({
                 pathname: '/chats',
-                search: '?query=abc',
                 state: {userId : location.state.userId}
             });
             
@@ -89,7 +89,7 @@ const Chat = ({history}) => {
 
         console.log(location.state);
         sender = location.state.userId;
-        roomId = location.state.roomId;
+        chatId = location.state.chatId;
         connect();
      }, []);
 
@@ -145,10 +145,10 @@ const Chat = ({history}) => {
                     <div className="header_2">
                         <button className="gohome" onClick={out}>나가기</button>
                     </div> */}
-                <div className="left">채팅방</div>
+                <div className="left">{title}</div>
                 <div className="center"></div>
                 <div className="right">
-                    <button className="gohome" onClick={out}>나가기</button>
+                    <button className="gohome" onClick={out}></button>
                 </div>
             </div>
             <div id="chat_view"></div>

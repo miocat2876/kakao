@@ -45,7 +45,7 @@ const MakeChat = (props) => {
         })
     }
 
-    const users = [{id: "test@naver.com"}, {id: "test@gmail.com"}, {id: "test@naver.com"}, {id: "test@gmail.com"},{id: "test@naver.com"}, {id: "test@gmail.com"}];
+    const users = [{id: "test1@daum.net"}, {id: "test2@daum.net"}, {id: "test3@daum.net"}, {id: "test4@daum.net"},{id: "test5@daum.net"}, {id: "test6@daum.net"}, {id: "test7@daum.net"}];
 
     //1. 친구 조회  2. 친구 선택 후 방제목 입력과 생성  3. 방이동 4. 서버에 초대한 사람들 리스트 보내주기 방번호랑 
     const userList = () => {
@@ -77,9 +77,10 @@ const MakeChat = (props) => {
                                 <div className="userList">
                                     {
                                         users.map(item => (
-                                            <label className="item">
-                                                {item.id}<input type="checkbox" name="user" value={item.id} className="chkbox" />
-                                            </label>
+                                            <div className="item">
+                                                <div className='userName'>{item.id}</div>
+                                                <input type="checkbox" name="user" value={item.id} className="chkbox" />
+                                            </div>
                                         ))
                                     }
                                 </div>

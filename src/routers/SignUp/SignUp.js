@@ -29,10 +29,10 @@ const SignUp = ({history}) =>{
         if( id !== '' ){
             console.log('input');
             if ( name === 'id' ){ //아이디 값 중복 체크
-                axios.get('http://3.35.140.126:9000/user/duplicate_check', {params: {id: id}})
+                axios.get('http://3.35.140.126:9000/user/duplicate_check', {params: {id: id}}) //사용법 잘못됐다
                 .then(function(response){  
                     console.log(response.data.result);
-                    if(response.data.result === 'success'){
+                    if( response.data.result === 'success'){
                         //중복 있음
                         setValid('true');
                     }
@@ -170,7 +170,7 @@ const SignUp = ({history}) =>{
                             <input type="text" readonly="readonly" id="fileRoute"/>
                         </div> */}
                         </div>
-                        <button className="btn" type="submit" onClick={submit}>sign up</button>
+                        <button className="btn" type="submit" onClick={submit}>회원가입</button>
                     </div>
                 </form>
             </main>

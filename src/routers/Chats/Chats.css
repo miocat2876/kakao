@@ -21,7 +21,7 @@
 }
 
 #title{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     line-height: 50px;
 }
@@ -47,21 +47,8 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
 #icons > li:nth-child(2){
-    text-align: center;
-    line-height: 50px;
-    background-image: url(../../images/user.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-#icons > li:nth-child(3){
-    text-align: center;
-    line-height: 50px;
-    background-image: url(../../images/smile.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-#icons > li:nth-child(4){
     text-align: center;
     line-height: 50px;
     background-image: url(../../images/gear.png);
@@ -111,17 +98,22 @@
 }
 
 .rightSection{
-    width: 70px;
+    width: 34px;
     padding-top: 2.5px;
 }
 
 .enterBtn{
-    width: 70px;
-    height: 50px;
+    width: 40px;
+    height: 60px;
     border: none;
     font-size: 13px;
     background: white;
+    background-image: url(../../images/right-arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
 }
+
 .enterBtn:hover{
     cursor: pointer;
 }
@@ -145,7 +137,7 @@
     width: calc( 100% / 4 );
     text-align: center;
     line-height: 50px;
-    background-image: url(../../images/talks.png);
+    background-image: url(../../images/chat.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -162,7 +154,7 @@
     width: calc( 100% / 4 );
     text-align: center;
     line-height: 50px;
-    background-image: url(../../images/talk.png);
+    background-image: url(../../images/makechat.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
