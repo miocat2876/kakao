@@ -151,6 +151,11 @@ const SignUp = ({history}) =>{
                             onChange={onChangeValue}
                             name="phone">
                         </input>
+                        <input
+                            type="file"
+                            id="imgFile"
+                            name="img"
+                        />
                         {/* <div className="imgContiner">
                             <input
                                 type="file"

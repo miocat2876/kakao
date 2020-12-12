@@ -6,16 +6,15 @@ import User from './User';
 
 const MakeChat = (props) => {
 
+    // const [friendList, setFriends] = useState([]);
     const [chatInfo, setChatInfo] = useState({
         id: "",
         chatTitle: "",
-        chatRoomId: ""
+        friendList: []
     });
 
-    const [fridens, setFriends] = useState({});
-
-    const {isOpen, close, userId} = props;
-    const {id, chatTitle, chatRoomId} = chatInfo;
+    const { isOpen, close, userId } = props;
+    const { chatTitle, friendList  } = chatInfo;
 
     const onChangeValue = (e) => {
         const { value, name } = e.target;
@@ -28,15 +27,20 @@ const MakeChat = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(friendList);
         setChatInfo({ //사용자 정보 받아 설정
             ...chatInfo,
-            id: {userId}
+            id: {userId},
+            friendList: {friendList} 
         });
+
+        console.log(chatInfo);
+        //체크된 유저 목록 담기 
         axios.post('http://3.35.140.126:9000/chat/room-create', chatInfo)
         .then(res => {
             //등록 성공 시
             console.log(props);
-            axios.post
+            // axios.post
             props.history.push('/chat/1');//리턴받은 방번호로 이동
             // <Link to="/chat/1"/>
         })
@@ -57,6 +61,15 @@ const MakeChat = (props) => {
 
         // })
 
+    }
+
+    const onChangeCheck = (user) => {
+        // setFriends([...friendList, user]);
+        setChatInfo({
+            ...chatInfo,
+            friendList: [...friendList, user]
+        })
+        console.log(friendList);
     }
  
     return(
@@ -79,7 +92,7 @@ const MakeChat = (props) => {
                                         users.map(item => (
                                             <div className="item">
                                                 <div className='userName'>{item.id}</div>
-                                                <input type="checkbox" name="user" value={item.id} className="chkbox" />
+                                                <input type="checkbox" name="user" value={item.id} className="chkbox" onChange={() => {onChangeCheck(item)}}/>
                                             </div>
                                         ))
                                     }
