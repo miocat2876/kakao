@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { SignUp, Login, Chats, Chat, Modal } from './routers';
+import { SignUp, Login, Chats, Chat } from './routers';
 
 
 const App = () =>{
@@ -11,7 +11,7 @@ const App = () =>{
                 <Route path="/login" component={Login} />
                 <Route path="/chats" component={Chats} />
                 <Route path="/chat/:id" component={Chat} />
-                <Route path="/modal" component={Modal} />
+                {/* <Route path="/modal" component={Modal} /> */}
                 <Redirect to="/login"/>
             </Switch>
         </BrowserRouter>

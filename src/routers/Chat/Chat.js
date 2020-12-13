@@ -4,14 +4,12 @@ import jQuery from "jquery";
 window.$ = window.jQuery = jQuery;
 import 'react-stomp';
 import SockJS from 'sockjs-client';
-import {useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 //웹소켓 설정//
-
-    var stompClient;
-    var sender = 'my';
-    var chatId = '1';
-    var title = 'chat1';
+var stompClient;
+    var sender = localStorage.getItem('id');
+    var chatId;
 	
 	//연결//
 	function connect(){
@@ -21,7 +19,7 @@ import {useLocation } from 'react-router-dom';
 		
 		stompClient.connect({}, function(){
 			//메세지를 받는다. 각각의 구독//
-			stompClient.subscribe('/topic/chat/'+chatId, function(msg){
+			stompClient.subscribe('/topic/chat/'+ chatId, function(msg){
 
                 const response = JSON.parse(msg.body);
 
@@ -41,7 +39,7 @@ import {useLocation } from 'react-router-dom';
 	//연결해제//
 	function disconnect() {
 	    	if (stompClient !== null) {
-	    		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':'님이 나갔습니다', 'name':''+sender}));
+	    		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':'님이 나갔습니다', 'name':+sender}));
 	    		stompClient.disconnect();
 	    	}
 	}
@@ -60,9 +58,10 @@ import {useLocation } from 'react-router-dom';
     function input(value){
         $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
     }
+    
 
 
-const Chat = ({history}) => { 
+const Chat = (props) => { 
     const [chatInfo, setChat] = useState(
         {
             name: "",
@@ -70,26 +69,16 @@ const Chat = ({history}) => {
         }
     );
 
-    const location =  useLocation();
-
     useEffect(() => {
-
         window.onpopstate = function (event) {
-
             disconnect();
             //라우터 넣기.
-            history.push({
-                pathname: '/chats',
-                state: {userId : location.state.userId}
-            });
-            
+            history.push('/chats');
         }
           
-        
-
-        console.log(location.state);
-        sender = location.state.userId;
-        chatId = location.state.chatId;
+        // console.log(location.state);
+        // sender = localStorage.getItem('id');
+        chatId = props.match.params.id;
         connect();
      }, []);
 
@@ -99,11 +88,7 @@ const Chat = ({history}) => {
         //방나가기 통신 넣기.
         disconnect();
         //라우터 넣기.
-        history.push({
-            pathname: '/chats',
-            search: '?query=abc',
-            state: {userId : location.state.userId}
-          });
+        history.push('/chats');
     }
 
 
@@ -145,7 +130,7 @@ const Chat = ({history}) => {
                     <div className="header_2">
                         <button className="gohome" onClick={out}>나가기</button>
                     </div> */}
-                <div className="left">{title}</div>
+                <div className="left">{chatId}</div>
                 <div className="center"></div>
                 <div className="right">
                     <button className="gohome" onClick={out}></button>

@@ -15,7 +15,7 @@ const Login = ({ history }) => {
     const { id, pw, loginChk } = login;
 
     const setLocal = (login) => {
-        if(login.loginChk==true)
+        if(loginChk == true)
             localStorage.setItem('login', JSON.stringify(login));
         else
             localStorage.setItem('login', JSON.stringify({id: "", pw: "", loginChk : false}));
@@ -44,13 +44,8 @@ const Login = ({ history }) => {
     }, []);
 
     const goChats = (id) =>{
-        history.push(
-            {
-            pathname: '/chats',
-            state: { userId: id }
-          }
-        
-        );
+        localStorage.setItem('id', JSON.stringify(id));
+        history.push('/chats');
     }
 
     const handleClick = (login) => {

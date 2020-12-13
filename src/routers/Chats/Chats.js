@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Chats = ({ history }) => {
-    var userId;
+    var userId = localStorage.getItem('id');
     const [lists, setLists] = useState([]);
     const location =  useLocation();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +27,7 @@ const Chats = ({ history }) => {
 
     const list = ()=>{
         axios.get('http://3.35.140.126:9000/chat/room-list', 
-            {userId : location.state.userId}
+            {userId : userId}
         )
         .then(function (response) {
             setLists([...lists,{
@@ -54,11 +54,12 @@ const Chats = ({ history }) => {
     const chatList = lists.map((list, index) =>
             <div className="chatBoxInner" key={index}>
                 <div className="leftSection">
-                    <div className="img" >{userId}</div>
+                    {/* 유저 프로필사진 조회 처리  */}
+                    <div className="img" ></div> 
                     <div className="title">{list.title}</div>
                 </div>
                 <div className="rightSection">
-                    <button className="enterBtn" type="submit" onClick={(e) => {enterChat(e,{roomId:index,userId:location.state.userId})}}></button>
+                    <button className="enterBtn" type="submit" onClick={(e) => {enterChat(e,{roomId: index, userId: userId})}}></button>
                 </div>
             </div>
     );

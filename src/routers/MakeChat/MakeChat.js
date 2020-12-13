@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './MakeChat.css';
-import User from './User';
 
 const MakeChat = (props) => {
 
@@ -31,7 +30,7 @@ const MakeChat = (props) => {
         setChatInfo({ //사용자 정보 받아 설정
             ...chatInfo,
             id: {userId},
-            friendList: {friendList} 
+            friendList: [friendList] 
         });
 
         console.log(chatInfo);
@@ -41,11 +40,14 @@ const MakeChat = (props) => {
             //등록 성공 시
             console.log(props);
             // axios.post
-            props.history.push('/chat/1');//리턴받은 방번호로 이동
+            if(true){
+                props.history.push('/chat/100');//리턴받은 방번호로 이동
+            }
             // <Link to="/chat/1"/>
         })
-        .catch(res =>{
+        .catch(error =>{
             //등록 실패 시
+            props.history.push('/chat/100');
         })
     }
 
