@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
+import { call } from 'file-loader';
+
 
 const Login = ({ history }) => {
     const [login, setLogin] = useState(
@@ -29,7 +31,6 @@ const Login = ({ history }) => {
         }
     }
 
-
     useEffect(() => {
         getLocal(function(val){
             setTimeout(() => {
@@ -49,7 +50,7 @@ const Login = ({ history }) => {
     }
 
     const handleClick = (login) => {
-        if(login == undefined) {login = this.login;}
+        if(login == undefined) {login = this.login;} 
 
         axios.post('http://3.35.140.126:9000/user/login', {params: login})
         .then(function(response) {

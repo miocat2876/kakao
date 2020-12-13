@@ -3,6 +3,8 @@ import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import jQuery from "jquery";
+window.$ = window.jQuery = jQuery;
 
 const Chats = ({ history }) => {
     var userId = localStorage.getItem('id');
@@ -24,6 +26,31 @@ const Chats = ({ history }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     }
+    const logoutView = () => {
+        if( $("#logout").css("display")!=="none")
+            $("#logout").css("display","none");
+        else
+            $("#logout").css("display","block");
+        
+
+    }
+    const logout = () => {
+
+        console.log(location.state.userId);
+
+        axios.get('http://3.35.140.126:9000/chat/room-list?????????',
+            {userId : location.state.userId}
+        )
+        .then(function (response) {
+        })
+        .catch(function (error) {
+            history.push( '/login');
+            console.log(error);
+        });
+        
+
+    }
+    
 
     const list = ()=>{
         axios.get('http://3.35.140.126:9000/chat/room-list', 
@@ -73,8 +100,14 @@ const Chats = ({ history }) => {
                 <div id="title">채팅</div>
                 <div id='icons'>
                     <li></li>
-                    <li></li>
+                    <li onClick = {logoutView}>
+                        <ul>
+                            <li id="logout" onClick = {logout}>로그아웃</li>
+                            <li></li>
+                        </ul>
+                        </li>
                 </div>
+                    
             </div>
             <div className="chatBoxList">
                 {chatList}
