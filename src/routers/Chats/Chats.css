@@ -35,7 +35,27 @@
     width: 30px;
     height: 30px;
     background-size: 70%;
-    margin-right: 5px;
+    margin-right: 15px;
+}
+#icons > li > ul{
+
+    margin-top: 10px;
+
+
+}
+#icons > li > ul > li{
+    
+    width: 40px;
+    height: 5px;
+    font-size: 10px;
+    text-align: left;
+    
+}
+
+#icons > li > ul > li:hover{
+    
+    color: gray;
+    
 }
 #icons > li:hover{
     cursor: pointer;

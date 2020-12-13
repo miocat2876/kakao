@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
+import { call } from 'file-loader';
+
 
 const Login = ({ history }) => {
     const [login, setLogin] = useState(
@@ -28,7 +30,6 @@ const Login = ({ history }) => {
             callback(val);
         }
     }
-
 
     useEffect(() => {
         getLocal(function(val){
