@@ -54,7 +54,7 @@ const Login = ({ history }) => {
     }
 
     const handleClick = (login) => {
-        if(login == undefined) {login = this.login;}
+        if(login == undefined) {login = this.login;} 
 
         axios.post('http://3.35.140.126:9000/user/login', {params: login})
         .then(function(response) {
