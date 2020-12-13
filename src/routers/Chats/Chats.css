@@ -26,6 +26,12 @@
     line-height: 50px;
 }
 
+#searchInput{
+
+    margin-top: 10px;
+    
+}
+
 #icons{
     display: flex;
     align-items: center;
@@ -38,10 +44,7 @@
     margin-right: 15px;
 }
 #icons > li > ul{
-
     margin-top: 10px;
-
-
 }
 #icons > li > ul > li{
     
@@ -49,13 +52,12 @@
     height: 5px;
     font-size: 10px;
     text-align: left;
+    display: none;
     
 }
 
 #icons > li > ul > li:hover{
-    
     color: gray;
-    
 }
 #icons > li:hover{
     cursor: pointer;
