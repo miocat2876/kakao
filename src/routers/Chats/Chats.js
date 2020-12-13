@@ -12,12 +12,22 @@ const Chats = ({ history }) => {
     const location =  useLocation();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    
+
+    const [searchList, setSearchList] = useState(
+        {
+            searchList: "",
+        }
+    );
+
+
     const enterChat = (e, value) => {
         history.push({
             pathname: '/chat/default',
             state: value
           });
     }
+    
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -38,20 +48,65 @@ const Chats = ({ history }) => {
 
         console.log(location.state.userId);
 
-        axios.get('http://3.35.140.126:9000/chat/room-list?????????',
-            {userId : location.state.userId}
-        )
+        axios({url:'http://3.35.140.126:9000/user/logout',
+        method: 'get',
+        params: {userId : location.state.userId},
+        headers: {Authorization : 'eyJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6WyJ1c2VyMUBkYXVtLm5ldCJdLCJpYXQiOjE2MDc4NDc4NDIsImV4cCI6MTYwNzg1NTA0Mn0.0YO5auTaymOy_w9SRlbJM3w08ZOaG5JapuQ0qWlIV9g'}
+        })
         .then(function (response) {
+
+            console.info(response);
+            if(response.data.return == 'success')
+                history.push('/login');
+            
         })
         .catch(function (error) {
-            history.push( '/login');
+            
             console.log(error);
         });
         
 
     }
-    
 
+    const listSearch = () => {
+        axios.get('http://3.35.140.126:9000/chat/room-list', 
+            {userId : location.state.userId,
+             chatId : '3'}
+        )
+        .then(function (response) {
+            setLists([...lists,{
+                image : 'aa.jpg',
+                title : "chat1",
+                chatId : "1"
+            },{
+            
+                image : 'bb.jpg',
+                title : "chat2",
+                chatId : "2"
+            },{
+            
+                image : 'cc.jpg',
+                title : "chat3",
+                chatId : "3"
+            }]);
+        })
+        .catch(function (error) {
+            console.log(error);
+    });
+
+
+    }
+
+    const handleChange = (e) => {
+        const { value, name } = e.target;
+            setSearchList({
+                ...searchList,
+                [name]: value
+            });
+
+            console.log(searchList);
+    }
+    
     const list = ()=>{
         axios.get('http://3.35.140.126:9000/chat/room-list', 
             {userId : location.state.userId}
@@ -97,10 +152,12 @@ const Chats = ({ history }) => {
         <div className="chats">
             <div className="header">
                 <div id="title">채팅</div>
+                <div id="searchInput"><input type="text" name = "searchList" onChange={handleChange}/></div>
                 <div id='icons'>
-                    <li></li>
+                    <li onClick={listSearch}></li>
                     <li onClick = {logoutView}>
                         <ul>
+
                             <li id="logout" onClick = {logout}>로그아웃</li>
                             <li></li>
                         </ul>
