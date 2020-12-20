@@ -36,14 +36,14 @@ const Chats = ({ history }) => {
     const closeModal = () => {
         setIsModalOpen(false);
     }
-    const logoutView = () => {
-        if( $("#logout").css("display")!=="none")
-            $("#logout").css("display","none");
-        else
-            $("#logout").css("display","block");
+    // const logoutView = () => {
+    //     if( $("#logout").css("display")!=="none")
+    //         $("#logout").css("display","none");
+    //     else
+    //         $("#logout").css("display","block");
         
 
-    }
+    // }
     const logout = () => {
 
         console.log(location.state.userId);
@@ -69,32 +69,7 @@ const Chats = ({ history }) => {
     }
 
     const listSearch = () => {
-        axios.get('http://3.35.140.126:9000/chat/room-list', 
-            {userId : location.state.userId,
-             chatId : '3'}
-        )
-        .then(function (response) {
-            setLists([...lists,{
-                image : 'aa.jpg',
-                title : "chat1",
-                chatId : "1"
-            },{
-            
-                image : 'bb.jpg',
-                title : "chat2",
-                chatId : "2"
-            },{
-            
-                image : 'cc.jpg',
-                title : "chat3",
-                chatId : "3"
-            }]);
-        })
-        .catch(function (error) {
-            console.log(error);
-    });
-
-
+        history.push('/search');
     }
 
     const handleChange = (e) => {
@@ -153,19 +128,19 @@ const Chats = ({ history }) => {
         <div className="chats">
             <div className="header">
                 <div id="title">채팅</div>
-                <div id="searchInput"><input type="text" name = "searchList" onChange={handleChange}/></div>
                 <div id='icons'>
                     <li onClick={listSearch}></li>
-                    <li onClick = {logoutView}>
-                        <ul>
-
-                            <li id="logout" onClick = {logout}>로그아웃</li>
-                            <li></li>
+                    <li id="settings">
+                        <label for="toggle"></label>
+                        <input type="checkbox" id="toggle" />
+                        <ul id="nav">
+                            <li id="logout">로그아웃</li>
+                            <li id='setting'>설정</li>
                         </ul>
-                        </li>
-                </div>
-                    
+                    </li>
+                </div>  
             </div>
+            {/* <div id="searchInput"><input type="text" name = "searchList" onChange={handleChange}/></div> */}
             <div className="chatBoxList">
                 {chatList}
             </div>

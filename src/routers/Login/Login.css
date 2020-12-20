@@ -61,6 +61,7 @@
 
 #login_auto{
     display: flex;
+    height: 20px;
     justify-content: space-between;
 }
 
@@ -77,6 +78,7 @@
 #signUp{
     font-size: 12px;
     width: fit-content;
+    height: 20px;
     text-decoration: underline;
 }
 

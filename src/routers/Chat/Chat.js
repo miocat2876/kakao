@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState,useEffect } from 'react';
 import './Chat.css';
 import jQuery from "jquery";
 window.$ = window.jQuery = jQuery;
