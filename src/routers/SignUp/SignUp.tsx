@@ -136,10 +136,13 @@ const Input = styled.input`
     border: 1px solid gray;
     padding-left: 7px;
 
-    ${props => {
-        return props.valid ? 'background: blue' : 'background: red'
-    }}
+
 `;
+
+//위에 들어가야함
+// ${props => {
+//     return props.valid ? 'background: blue' : 'background: red'
+// }}
 
 const Button = styled.button`
     width: 240px;
