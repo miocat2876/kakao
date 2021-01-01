@@ -53,15 +53,15 @@ const SignUp = ({history}:any) =>{
         ev.preventDefault();
         // props.onCreate(this.state);
         
-        if(!id || !pw || !nickName || !phone){ //전체 입력 확인
+        if(!id || !pw || !nickName || !phone){
             alert('모든 값이 입력되지 않았습니다.');
         }
         else{
-            if(pw !== pwCheck){ //비밀번호 입력 값 확인
+            if(pw !== pwCheck){
                 alert('비밀번호 확인이 필요합니다.');
             }
             else{
-                axios.post('http://3.35.140.126:9000/apis/users/joins', member)
+                axios.get('http://3.35.140.126:9000/apis/users/joins?id=test&nickName=test&password=test&phone=01023')
                 .then(function (response) {
                     console.log(response);
                     alert('반갑습니다.');

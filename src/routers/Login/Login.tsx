@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
-import { call } from 'file-loader';
+// import { call } from 'file-loader';
 
 
 const Login = ({ history }:any) => {
@@ -50,7 +50,7 @@ const Login = ({ history }:any) => {
     }
 
     const handleClick = (login:any) => {
-        if(login == undefined && this !== undefined) {login = this.login;} 
+        // if(login == undefined && this !== undefined) {login = this.login;} 
 
         axios.post('http://3.35.140.126:9000/user/login', login)
         .then(function(response) {
