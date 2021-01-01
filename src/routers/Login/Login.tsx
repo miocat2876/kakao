@@ -5,7 +5,7 @@ import kakaoLogo from '../../images/kakaoLogo.png';
 import { call } from 'file-loader';
 
 
-const Login = ({ history }) => {
+const Login = ({ history }:any) => {
     const [login, setLogin] = useState(
         {
             id: "",
@@ -16,15 +16,15 @@ const Login = ({ history }) => {
 
     const { id, pw, loginChk } = login;
 
-    const setLocal = (login) => {
+    const setLocal = (login:any) => {
         if(loginChk == true)
             localStorage.setItem('login', JSON.stringify(login));
         else
             localStorage.setItem('login', JSON.stringify({id: "", pw: "", loginChk : false}));
     }
 
-    const getLocal = (callback) => {
-        let val = JSON.parse(localStorage.getItem('login'));
+    const getLocal = (callback:any) => {
+        let val = JSON.parse(localStorage.getItem('login')||"");
         if(val!= null && Object.keys(val).length>0){
             setLogin(val);
             callback(val);
@@ -32,7 +32,7 @@ const Login = ({ history }) => {
     }
 
     useEffect(() => {
-        getLocal(function(val){
+        getLocal(function(val:any){
             setTimeout(() => {
                 if(val.loginChk===true){
                     if(confirm("로그인 하시겠습니까?")){
@@ -44,13 +44,13 @@ const Login = ({ history }) => {
         });
     }, []);
 
-    const goChats = (id) =>{
+    const goChats = (id:any) =>{
         localStorage.setItem('id', JSON.stringify(id));
         history.push('/chats');
     }
 
-    const handleClick = (login) => {
-        if(login == undefined) {login = this.login;} 
+    const handleClick = (login:any) => {
+        if(login == undefined && this !== undefined) {login = this.login;} 
 
         axios.post('http://3.35.140.126:9000/user/login', login)
         .then(function(response) {
@@ -67,7 +67,7 @@ const Login = ({ history }) => {
         });
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e:any) => {
         const { value, name } = e.target;
         if(e.target.type =="checkbox"){
             setLogin({
