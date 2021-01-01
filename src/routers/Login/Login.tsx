@@ -25,20 +25,20 @@ const Login = ({ history }) => {
     }
 
     const getLocal = (callback:any) => {
-        let val = JSON.parse(localStorage.getItem('login'));
-        if(val!= null && Object.keys(val).length>0){
-            setLogin(val);
-            callback(val);
+        let loginInfo = JSON.parse(localStorage.getItem('login'));
+        if(loginInfo!= null && Object.keys(loginInfo).length>0){
+            setLogin(loginInfo);
+            callback(loginInfo);
         }
     }
 
     useEffect(() => {
-        getLocal(function(val:any){
+        getLocal(function(loginInfo:any){
             setTimeout(() => {
-                if(val.loginChk===true){
+                if(loginInfo.loginChk===true){
                     if(confirm("로그인 하시겠습니까?")){
-                        setLocal(val);
-                        handleClick(val);
+                        setLocal(loginInfo);
+                        handleClick(loginInfo);
                     }
                 }
             }, 100);
