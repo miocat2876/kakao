@@ -49,8 +49,11 @@ const Login = ({ history }:any) => {
         history.push('/chats');
     }
 
-    const handleClick = (login:any) => {
-        // if(login == undefined && this !== undefined) {login = this.login;} 
+    function handleClick(login:any) {
+
+
+        if(login == undefined) 
+            {login = this.login;} 
 
         axios.post('http://3.35.140.126:9000/user/login', login)
         .then(function(response) {

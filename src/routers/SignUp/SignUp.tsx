@@ -136,8 +136,17 @@ const Input = styled.input`
     border: 1px solid gray;
     padding-left: 7px;
 
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 66f1a751731a543bcee0f459af4dcc89eb6775c4
 `;
+
+//위에 들어가야함
+// ${props => {
+//     return props.valid ? 'background: blue' : 'background: red'
+// }}
 
 const Button = styled.button`
     width: 240px;
