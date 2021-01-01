@@ -33,36 +33,3 @@
 .container{
     margin-bottom: 15px;
 }
-
-.box{
-    width: 240px;
-    height: 42px;
-    border: 1px solid gray;
-    /* border-top: none; */
-    padding-left: 10px;
-}
-
-.box:first-child{
-    border: 1px solid gray;
-}
-
-
-#imgFile{
-    width: 240px;
-    height: 42px;
-}
-
-.btn{
-    width: 240px;
-    height: 42px;
-    border: 1px solid lightgray;
-    background: #ececec;
-}
-
-.btn:hover{
-    cursor: pointer;
-}
-
-input:focus{
-    outline: none;
-}

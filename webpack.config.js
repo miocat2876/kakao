@@ -33,12 +33,16 @@ module.exports = {
                 test: /\.(css)$/,
                 exclude: /node_modules/,
                 use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader'
             }
         ]
     },
 
     resolve: {
-        extensions: ["*", ".js", "jsx"]
+        extensions: ["*", ".js", "jsx", '.ts', '.tsx', '.scss', '.css', '.json']
     },
 
     output: {
