@@ -3,11 +3,9 @@ import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
 
 const Chats = ({ history }) => {
-    var userId = localStorage.getItem('id');
+    var userId:string = localStorage.getItem('id');
     const [lists, setLists] = useState([]);
     const location =  useLocation();
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,8 +48,7 @@ const Chats = ({ history }) => {
 
         axios({url:'http://3.35.140.126:9000/user/logout',
         method: 'get',
-        params: {userId : location.state.userId},
-        headers: {Authorization : 'eyJhbGciOiJIUzI1NiJ9.eyJzY29wZSI6WyJ1c2VyMUBkYXVtLm5ldCJdLCJpYXQiOjE2MDc4NDc4NDIsImV4cCI6MTYwNzg1NTA0Mn0.0YO5auTaymOy_w9SRlbJM3w08ZOaG5JapuQ0qWlIV9g'}
+        params: {userId : location.state.userId}
         })
         .then(function (response) {
 
@@ -83,9 +80,10 @@ const Chats = ({ history }) => {
     }
     
     const list = ()=>{
-        axios.get('http://3.35.140.126:9000/chat/room-list', 
-            {userId : userId}
-        )
+        axios({url:'http://3.35.140.126:9000/apis/chats/rooms', 
+        method: 'get',
+        params: {userId : userId}
+        })
         .then(function (response) {
             setLists([...lists,{
                 image : 'aa.jpg',
@@ -131,7 +129,7 @@ const Chats = ({ history }) => {
                 <div id='icons'>
                     <li onClick={listSearch}></li>
                     <li id="settings">
-                        <label for="toggle"></label>
+                        <label htmlFor="toggle"></label>
                         <input type="checkbox" id="toggle" />
                         <ul id="nav">
                             <li id="logout">로그아웃</li>

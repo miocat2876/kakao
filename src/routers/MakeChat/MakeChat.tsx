@@ -5,6 +5,15 @@ import './MakeChat.css';
 
 const MakeChat = (props) => {
 
+
+    interface SetProps{
+
+        isOpen:any,
+        close :any,
+        userId:string
+
+    }
+
     // const [friendList, setFriends] = useState([]);
     const [chatInfo, setChatInfo] = useState({
         id: "",
@@ -12,7 +21,7 @@ const MakeChat = (props) => {
         friendList: []
     });
 
-    const { isOpen, close, userId } = props;
+    const { isOpen, close, userId }:SetProps = props;
     const { chatTitle, friendList  } = chatInfo;
 
     const onChangeValue = (e) => {
@@ -29,7 +38,7 @@ const MakeChat = (props) => {
         console.log(friendList);
         setChatInfo({ //사용자 정보 받아 설정
             ...chatInfo,
-            id: {userId},
+            id: userId,//김경민 {userId}에서 변경
             friendList: [friendList] 
         });
 

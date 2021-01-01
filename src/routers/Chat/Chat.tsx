@@ -1,10 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import './Chat.css';
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
+import $ from "jquery";
 import 'react-stomp';
 import SockJS from 'sockjs-client';
 import { useLocation } from 'react-router-dom';
+import Stomp from 'stompjs';
 
 //웹소켓 설정//
 var stompClient;
@@ -61,7 +61,7 @@ var stompClient;
     
 
 
-const Chat = (props) => { 
+const Chat = (props,{history}:any) => { 
     const [chatInfo, setChat] = useState(
         {
             name: "",
@@ -145,7 +145,7 @@ const Chat = (props) => {
                     value={chat} 
                     onChange={handleChange}
                     onKeyUp={handleKeyUp}
-                    autocomplete="off"
+                    ui-autocomplete="off"
                 /> 
             </div>
         </div>

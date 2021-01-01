@@ -8,22 +8,22 @@ const Login = ({ history }:any) => {
     const [login, setLogin] = useState(
         {
             id: "",
-            pw: "",
+            password: "",
             loginChk : false
         }
     );
 
-    const { id, pw, loginChk } = login;
+    const { id, password, loginChk } = login;
 
     const setLocal = (login:any) => {
         if(loginChk == true)
             localStorage.setItem('login', JSON.stringify(login));
         else
-            localStorage.setItem('login', JSON.stringify({id: "", pw: "", loginChk : false}));
+            localStorage.setItem('login', JSON.stringify({id: "", password: "", loginChk : false}));
     }
 
     const getLocal = (callback:any) => {
-        let val = JSON.parse(localStorage.getItem('login')||"");
+        let val = JSON.parse(localStorage.getItem('login'));
         if(val!= null && Object.keys(val).length>0){
             setLogin(val);
             callback(val);
@@ -54,7 +54,9 @@ const Login = ({ history }:any) => {
         if(login == undefined) 
             {login = this.login;} 
 
-        axios.post('http://3.35.140.126:9000/user/login', login)
+            console.log(login);
+
+        axios.post('http://3.35.140.126:9000/apis/securitys/login', login)
         .then(function(response) {
             if(true){ //response.data.return !== "fail"
                 console.log(response);
@@ -106,8 +108,8 @@ const Login = ({ history }:any) => {
                     <input 
                         type="password" 
                         placeholder="비밀번호"
-                        value={pw}
-                        name="pw"
+                        value={password}
+                        name="password"
                         onChange={handleChange}
                     />
                 </div>

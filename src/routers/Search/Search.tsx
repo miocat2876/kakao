@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState , useEffect } from 'react'; //파라미터로 받을경우 삭제
+import axios from 'axios';
+import { useLocation } from 'react-router-dom'; //파라미터로 받을경우 삭제
 
 const Search = () => {
 
+    const location =  useLocation(); //파라미터로 받을경우 삭제
+    const [lists, setLists] = useState([]); //파라미터로 받을경우 삭제
     const list = () => {
-        axios.get('http://3.35.140.126:9000/chat/room-list', 
-                {userId : location.state.userId,
-                chatId : '3'}
-            )
+            axios({url:'http://3.35.140.126:9000/chat/room-list',
+            method: 'get',
+            params: {userId : location.state.userId,
+                     chatId : '3'}
+         })
             .then(function (response) {
                 setLists([...lists,{
                     image : 'aa.jpg',
