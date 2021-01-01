@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
+import styled from 'styled-components';
 // import { call } from 'file-loader';
 
 
-const Login = ({ history }:any) => {
+const Login = ({ history }) => {
     const [login, setLogin] = useState(
         {
             id: "",
@@ -64,7 +65,7 @@ const Login = ({ history }:any) => {
                 setLocal(login);
                 goChats(login.id);
             }else{
-                alert('로그인정보가 일치하지 않습니다.');
+                alert('로그인 정보가 일치하지 않습니다.');
             }
         })
         .catch(function(error) {
@@ -99,23 +100,11 @@ const Login = ({ history }:any) => {
             </div>
             <div className="section">
                 <div id="login_input">
-                    <input 
-                        type="text" 
-                        placeholder="카카오계정" 
-                        value={id}
-                        name="id"
-                        onChange={handleChange}
-                    />
-                    <input 
-                        type="password" 
-                        placeholder="비밀번호"
-                        value={password}
-                        name="password"
-                        onChange={handleChange}
-                    />
+                    <Input placeholder="카카오계정" value={id} name="id" onChange={handleChange} />
+                    <Input type="password" placeholder="비밀번호" value={password} name="password" onChange={handleChange} />
                 </div>
                 <div id="login_button">
-                    <button onClick={()=>{handleClick(login)}}><p>로그인</p></button>
+                    <Button onClick={()=>{handleClick(login)}}><p>로그인</p></Button>
                 </div>
                 <div id="login_auto">
                     <div id="loginAutoSection">
@@ -130,3 +119,26 @@ const Login = ({ history }:any) => {
 };
 
 export default Login;
+
+const Input = styled.input`
+
+    &:focus{
+        outline: none;
+    }
+    width: 240px;
+    height: 42px;
+    border: 1px solid gray;
+    padding-left: 7px;
+
+`;
+
+const Button = styled.button`
+    width: 240px;
+    height: 42px;
+    border: 1px solid lightgray;
+    background: #ececec;
+
+    &:hover{
+        cursor: pointer;
+    }  
+`;
