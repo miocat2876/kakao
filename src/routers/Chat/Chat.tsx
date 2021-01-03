@@ -61,7 +61,7 @@ var stompClient;
     
 
 
-const Chat = (props,{history}:any) => { 
+const Chat = (props:any) => { 
     const [chatInfo, setChat] = useState(
         {
             name: "",
@@ -73,7 +73,7 @@ const Chat = (props,{history}:any) => {
         window.onpopstate = function (event) {
             disconnect();
             //라우터 넣기.
-            history.push('/chats');
+            props.history.push('/chats');
         }
           
         // console.log(location.state);
@@ -88,7 +88,8 @@ const Chat = (props,{history}:any) => {
         //방나가기 통신 넣기.
         disconnect();
         //라우터 넣기.
-        history.push('/chats');
+        console.log(history);
+        props.history.push('/chats');
     }
 
 

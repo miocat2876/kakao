@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import './MakeChat.css';
+import Api from './../Api';
 
 const MakeChat = (props) => {
 
@@ -44,7 +45,7 @@ const MakeChat = (props) => {
 
         console.log(chatInfo);
         //체크된 유저 목록 담기 
-        axios.post('http://3.35.140.126:9000/chat/room-create', chatInfo)
+        Api({apiname :'roomCreate', params : chatInfo})
         .then(res => {
             //등록 성공 시
             console.log(props);

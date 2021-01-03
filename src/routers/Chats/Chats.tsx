@@ -47,10 +47,7 @@ const Chats = ({ history }) => {
 
         console.log(location.state.userId);
 
-        axios({url:'http://3.35.140.126:9000/user/logout',
-            method: 'get',
-            params: {userId : location.state.userId}
-        })
+        Api({params: {userId : location.state.userId} , apiname: 'logOut'})
         .then(function (response) {
 
             console.info(response);
