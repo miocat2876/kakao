@@ -3,6 +3,7 @@ import './Chats.css';
 import MakeChat from '../MakeChat/MakeChat';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Api from './../Api';
 
 const Chats = ({ history }) => {
     var userId:string = localStorage.getItem('id');
@@ -46,10 +47,7 @@ const Chats = ({ history }) => {
 
         console.log(location.state.userId);
 
-        axios({url:'http://3.35.140.126:9000/user/logout',
-            method: 'get',
-            params: {userId : location.state.userId}
-        })
+        Api({params: {userId : location.state.userId} , apiname: 'logOut'})
         .then(function (response) {
 
             console.info(response);
@@ -80,10 +78,7 @@ const Chats = ({ history }) => {
     }
     
     const list = ()=>{
-        axios({url:'http://3.35.140.126:9000/apis/chats/rooms', 
-        method: 'get',
-        params: {userId : userId}
-        })
+        Api({params: {userId : userId} , apiname: 'chatList'})
         .then(function (response) {
             setLists([...lists,{
                 image : 'aa.jpg',
