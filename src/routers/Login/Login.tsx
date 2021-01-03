@@ -3,6 +3,7 @@ import './Login.css';
 import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
 import styled from 'styled-components';
+
 // import { call } from 'file-loader';
 
 
@@ -51,26 +52,24 @@ const Login = ({ history }) => {
     }
 
     function handleClick(login:any) {
-
-
         if(login == undefined) 
             {login = this.login;} 
 
             console.log(login);
 
-        axios.post('http://3.35.140.126:9000/apis/securitys/login', login)
-        .then(function(response) {
-            if(true){ //response.data.return !== "fail"
-                console.log(response);
-                setLocal(login);
-                goChats(login.id);
-            }else{
-                alert('로그인 정보가 일치하지 않습니다.');
-            }
-        })
-        .catch(function(error) {
-            alert(error);
-        });
+            axios.post('http://3.35.140.126:9000/apis/securitys/login', login)
+            .then(function(response) {
+                if(true){ //response.data.return !== "fail"
+                    console.log(response);
+                    setLocal(login);
+                    goChats(login.id);
+                }else{
+                    alert('로그인 정보가 일치하지 않습니다.');
+                }
+            })
+            .catch(function(error) {
+                alert(error);
+            });
     }
 
     const handleChange = (e:any) => {
