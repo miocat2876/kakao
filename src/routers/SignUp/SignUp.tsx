@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import kakaoLogo from '../../images/kakaoLogo.png';
 import styled from 'styled-components';
 import './SignUp.css';
 
@@ -87,11 +86,11 @@ const SignUp = ({history}:any) =>{
     }
 
     return(
-        <main className="signup" >
+        <Container>
                 <form className="form">
-                    <div className="inner">
+                    <Inner>
                         <div className="logoContainer">
-                            <img src={kakaoLogo}/>
+                            <div className='logo' />
                         </div>
                         <div className="container">
                             <Input placeholder="카카오계정" value={id} onChange={onChangeValue} name="id"></Input>
@@ -103,9 +102,9 @@ const SignUp = ({history}:any) =>{
                             <input type="file" placeholder="프로필 사진" id="profile" name="profile"></input>
                         </div>
                         <Button type="submit" onClick={submit}>회원가입</Button>
-                    </div>
+                    </Inner>
                 </form>
-            </main>
+            </Container>
     );
 }
 
@@ -155,7 +154,14 @@ const Button = styled.button`
 `;
 
 const Container = styled.div`
+    width: 340px;
+    height: 640px;
+    margin: 20px auto;
+    background-color: #FFEB33;
 `;
 
-const Logo = styled.div`
+const Inner = styled.div`
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 70px;
 `;

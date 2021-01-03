@@ -6,9 +6,7 @@ const urlList = {
 
 }
 const Api = (param:any) => {
-    // console.log(param);
     const {params, apiname} = param;
-    // console.log(apiname);
     console.log(urlList[apiname]);
     let apiParam = {url: urlList[apiname].url, method: urlList[apiname].method, params: params};
 

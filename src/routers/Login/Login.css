@@ -4,44 +4,24 @@
     box-sizing: border-box;
 }
 
-#wrap{
-    height: 640px;
-    width: 340px;
-    background-color: #FFEB33;
-    margin: 0 auto;
-    padding-top: 70px;
-}
-
-#main{
-    margin: 0 auto;
-    width: 240px;
-}
-
 .logoContainer{
     height: 146px;
 }
 
-.section{
-    width: 240px;
-}
-
 #login_auto{
     display: flex;
-    height: 20px;
     justify-content: space-between;
 }
 
-#login_auto input{
-    width: fit-content;
-}
-
 #login_auto p{
+    width: fit-content;
     margin-left: 5px;
     display: inline;
     font-size: 12px;
 }
 
 #signUp{
+    margin-top: 5px;
     font-size: 12px;
     width: fit-content;
     height: 20px;

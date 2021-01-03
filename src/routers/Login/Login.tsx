@@ -4,8 +4,6 @@ import axios from 'axios';
 import kakaoLogo from '../../images/kakaoLogo.png';
 import styled from 'styled-components';
 
-// import { call } from 'file-loader';
-
 
 const Login = ({ history }) => {
     const [login, setLogin] = useState(
@@ -55,8 +53,6 @@ const Login = ({ history }) => {
         if(login == undefined) 
             {login = this.login;} 
 
-            console.log(login);
-
             axios.post('http://3.35.140.126:9000/apis/securitys/login', login)
             .then(function(response) {
                 if(true){ //response.data.return !== "fail"
@@ -92,19 +88,15 @@ const Login = ({ history }) => {
     }
 
     return (
-    <div id="wrap">
-        <div id="main">
+    <Container>
+        <Inner>
             <div className="logoContainer">
                 <img src={kakaoLogo}/>
             </div>
             <div className="section">
-                <div id="login_input">
-                    <Input placeholder="카카오계정" value={id} name="id" onChange={handleChange} />
-                    <Input type="password" placeholder="비밀번호" value={password} name="password" onChange={handleChange} />
-                </div>
-                <div id="login_button">
-                    <Button onClick={()=>{handleClick(login)}}><p>로그인</p></Button>
-                </div>
+                <Input placeholder="카카오계정" value={id} name="id" onChange={handleChange} />
+                <Input type="password" placeholder="비밀번호" value={password} name="password" onChange={handleChange} />
+                <Button onClick={()=>{handleClick(login)}}><p>로그인</p></Button>
                 <div id="login_auto">
                     <div id="loginAutoSection">
                         <input type="checkbox" name="loginChk" checked={loginChk} onChange={handleChange} /><p>자동로그인</p>
@@ -112,15 +104,14 @@ const Login = ({ history }) => {
                     <a id="signUp" onClick={signUp}>회원가입</a>
                 </div>
             </div>
-        </div>
-    </div>
+        </Inner>
+    </Container>
   );
 };
 
 export default Login;
 
 const Input = styled.input`
-
     &:focus{
         outline: none;
     }
@@ -128,7 +119,6 @@ const Input = styled.input`
     height: 42px;
     border: 1px solid gray;
     padding-left: 7px;
-
 `;
 
 const Button = styled.button`
@@ -140,4 +130,18 @@ const Button = styled.button`
     &:hover{
         cursor: pointer;
     }  
+    margin-top: 7px;
+`;
+
+const Container = styled.div`
+    width: 340px;
+    height: 640px;
+    margin: 20px auto;
+    background-color: #FFEB33;
+`;
+
+const Inner = styled.div`
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 70px;
 `;

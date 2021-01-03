@@ -4,19 +4,6 @@
     box-sizing: border-box;
 }
 
-.signup {
-    width: 340px;
-    height: 640px;
-    margin: 0 auto;
-    background-color: #FFEB33;
-}
-
-.inner{
-    width: 240px;
-    margin: 0 auto;
-    padding-top: 70px;
-}
-
 .logoContainer{
     width: 100%;
     height: 146px;
@@ -27,7 +14,7 @@
 .logo{
     width: 225px;
     height: 146px;
-    background: wheat;
+    background-image: url('../../images/kakaoLogo.png');
 }
 
 .container{
