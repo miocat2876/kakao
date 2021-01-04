@@ -45,6 +45,11 @@ const SignUp = ({history}:any) =>{
                 })
             }
         }
+
+        if( name === 'profile'){
+            var formData = new FormData();
+            formData.append('attachedImage', value);
+        }
         
     }
 
@@ -60,9 +65,9 @@ const SignUp = ({history}:any) =>{
                 alert('비밀번호 확인이 필요합니다.');
             }
             else{
+                console.log(member);
                 axios.post('http://3.35.140.126:9000/apis/users/joins', member)
                 .then(function (response) {
-                    console.log(response);
                     alert('반갑습니다.');
                     setMember({
                         id: "",
@@ -99,7 +104,7 @@ const SignUp = ({history}:any) =>{
                             <Input placeholder="닉네임" value={nickName} onChange={onChangeValue} name="nickName"></Input>
                             {/* {(passwordCheck === 'false' && <div style={checkStyle}>입력하신 비밀번호 확인 부탁드립니다.</div>)} */}
                             <Input placeholder="휴대폰 번호 (ex. 010-0000-0000)" value={phone} onChange={onChangeValue} name="phone"></Input>
-                            <input type="file" placeholder="프로필 사진" id="profile" name="profile"></input>
+                            <input type="file" onChange={onChangeValue} id="profile" name="profile"></input>
                         </div>
                         <Button type="submit" onClick={submit}>회원가입</Button>
                     </Inner>

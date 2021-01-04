@@ -52,15 +52,9 @@ const Login = ({ history }) => {
 
     function handleClick(login:any) {
         if(login == undefined) 
-<<<<<<< HEAD
-            {login = this.login;} 
-
-            axios.post('http://3.35.140.126:9000/apis/securitys/login', login)
-=======
             {login = this.login;}
             console.log(login);
             Api({params : login , apiname: 'login'})
->>>>>>> 389e6fd3af16df7696bc70d0c3b4b8a404385a34
             .then(function(response) {
                 if(true){ //response.data.return !== "fail"
                     console.log(response);

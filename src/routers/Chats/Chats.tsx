@@ -4,6 +4,7 @@ import MakeChat from '../MakeChat/MakeChat';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Api from './../Api';
+import styled from 'styled-components';
 
 const Chats = ({ history }) => {
     var userId:string = localStorage.getItem('id');
@@ -118,7 +119,7 @@ const Chats = ({ history }) => {
     }, []);
 
     return (
-        <div className="chats">
+        <Container>
             <div className="header">
                 <div id="title">채팅</div>
                 <div id='icons'>
@@ -144,8 +145,14 @@ const Chats = ({ history }) => {
                 <div className="makeChat" onClick={openModal}></div>
                 <MakeChat isOpen={isModalOpen} close={closeModal} history={history}/>
             </div>
-        </div>
+        </Container>
     );
 }
 
 export default Chats;
+
+const Container = styled.div`
+    width: 340px;
+    height: 640px;
+    margin: 20px auto;
+`;
