@@ -49,18 +49,21 @@ const SignUp = ({history}:any) =>{
         //     }
         // }
 
-        if( name === 'profile'){
-            console.log(e.target.files[0]);
-            formData = new FormData();
-            formData.append('profile',e.target.files[0]);
-            console.log(formData);
-           // console.log(formData);
-        }
+        // if( name === 'profile'){
+        //     console.log(e.target.files[0]);
+        //     formData = new FormData();
+        //     formData.append('profile',e.target.files[0]);
+        //     console.log(formData);
+        //    // console.log(formData);
+        // }
         
     }
 
     const submit = (ev:any) => {
         ev.preventDefault();
+        let formdd:any = document.getElementsByClassName('form')[0];
+        formData = new FormData(formdd);
+        console.log(formData);
         // props.onCreate(this.state);
         
         if(!id || !pw || !nickName || !phone){
