@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const urlList = {
     chatList : {url: 'http://3.35.140.126:9000/apis/chats/rooms', method: 'GET'},
-    logout : {url: 'http://3.35.140.126:9000/user/logout', method: 'GET'},
+    logout : {url: 'http://3.35.140.126:9000/user/logout', method: 'GET'},//주소없음.
     login : {url: 'http://3.35.140.126:9000/apis/securitys/login', method: 'POST'},
-    roomCreate : {url: 'http://3.35.140.126:9000/chat/room-create', method: 'POST'},
+    roomCreate : {url: 'http://3.35.140.126:9000/apis/chats/rooms', method: 'POST'},
     duplicateCheck : {url: 'http://3.35.140.126:9000/apis/users/duplicate_check', method: 'GET'},
     join : {url: 'http://3.35.140.126:9000/apis/users/joins', method: 'POST'}
 }
