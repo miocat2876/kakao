@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import './SignUp.css';
+import Api from './../Api';
 
 const SignUp = ({history}:any) =>{
     const [member, setMember] = useState({
@@ -29,7 +30,7 @@ const SignUp = ({history}:any) =>{
         if( id !== '' ){
             if ( name === 'id' ){
                 console.log(valid);
-                axios.get('http://3.35.140.126:9000/apis/users/duplicate_check' + id)
+                Api({apiname : 'duplicateCheck' , params : id})
                 .then(function(response){  
                     if(response.data === 'success'){ 
                         //중복없음 사용가능
@@ -60,7 +61,7 @@ const SignUp = ({history}:any) =>{
                 alert('비밀번호 확인이 필요합니다.');
             }
             else{
-                axios.post('http://3.35.140.126:9000/apis/users/joins', member)
+                Api({apiname : 'join' , params : member})
                 .then(function (response) {
                     console.log(response);
                     alert('반갑습니다.');
