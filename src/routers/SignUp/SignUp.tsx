@@ -21,7 +21,15 @@ const SignUp = ({history}:any) =>{
 
     const onChangeValue = (e:any) => {
         const { value, name } = e.target;
+
+        if(name == 'file'){
+
+            //바이너리 함수 호출
+            //결과 값을 벨류에 담음.
+
+        }
         
+
         setMember({
             ...member,
             [name]: value
