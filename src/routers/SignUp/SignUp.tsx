@@ -23,7 +23,8 @@ const SignUp = ({history}:any) =>{
         const { value, name } = e.target;
 
         if(name == 'file'){
-
+            var formData = new FormData();
+            formData.append('attachedImage', value);
             //바이너리 함수 호출
             //결과 값을 벨류에 담음.
 
@@ -35,30 +36,27 @@ const SignUp = ({history}:any) =>{
             [name]: value
         });
 
-        if( id !== '' ){
-            if ( name === 'id' ){
-                console.log(valid);
-                Api({apiname : 'duplicateCheck' , params : id})
-                .then(function(response){  
-                    if(response.data === 'success'){ 
-                        //중복없음 사용가능
-                        setValid("true");
-                    }
-                    else{
-                        //중복, 사용불가
-                        setValid("false");
-                    }
-                })
-                .catch(function(error){
-                    alert(error);
-                })
-            }
-        }
+        // if( id !== '' ){
+        //     if ( name === 'id' ){
+        //         console.log(valid);
+        //         Api({apiname : 'duplicateCheck' , params : id})
+        //         .then(function(response){  
+        //             if(response.data === 'success'){ 
+        //                 //중복없음 사용가능
+        //                 setValid("true");
+        //             }
+        //             else{
+        //                 //중복, 사용불가
+        //                 setValid("false");
+        //             }
+        //         })
+        //         .catch(function(error){
+        //             alert(error);
+        //         })
+        //     }
+        // }
 
-        if( name === 'profile'){
-            var formData = new FormData();
-            formData.append('attachedImage', value);
-        }
+        
         
     }
 
@@ -70,6 +68,7 @@ const SignUp = ({history}:any) =>{
             alert('모든 값이 입력되지 않았습니다.');
         }
         else{
+            console.log(member);
             if(pw !== pwCheck){
                 alert('비밀번호 확인이 필요합니다.');
             }
@@ -98,6 +97,23 @@ const SignUp = ({history}:any) =>{
         history.push('/login');
     }
 
+    const fileUpload = (e) => {
+        e.preventDefault();
+
+        const file = e.target.files[0];
+        setMember({
+            ...member,
+            profile: file
+        });
+    }
+
+    const fileSubmit = (e) => {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append('profile', files[0].uploadFile);
+        
+    }
+
     return(
         <Container>
                 <form className="form">
@@ -112,7 +128,8 @@ const SignUp = ({history}:any) =>{
                             <Input placeholder="닉네임" value={nickName} onChange={onChangeValue} name="nickName"></Input>
                             {/* {(passwordCheck === 'false' && <div style={checkStyle}>입력하신 비밀번호 확인 부탁드립니다.</div>)} */}
                             <Input placeholder="휴대폰 번호 (ex. 010-0000-0000)" value={phone} onChange={onChangeValue} name="phone"></Input>
-                            <input type="file" onChange={onChangeValue} id="profile" name="profile"></input>
+                            <form name='profile' encType='multipart/form-data' onSubmit={fileSubmit}></form>
+                            <input type="file" onChange={fileUpload} id="profile" name="profile"></input>
                         </div>
                         <Button type="submit" onClick={submit}>회원가입</Button>
                     </Inner>
