@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import './SignUp.css';
 import Api from './../Api';
 
+var formData:FormData
 const SignUp = ({history}:any) =>{
     const [member, setMember] = useState({
         id: "",
@@ -21,13 +22,6 @@ const SignUp = ({history}:any) =>{
 
     const onChangeValue = (e:any) => {
         const { value, name } = e.target;
-
-        if(name == 'file'){
-
-            //바이너리 함수 호출
-            //결과 값을 벨류에 담음.
-
-        }
         
 
         setMember({
@@ -56,8 +50,11 @@ const SignUp = ({history}:any) =>{
         }
 
         if( name === 'profile'){
-            var formData = new FormData();
-            formData.append('attachedImage', value);
+            console.log(e.target.files[0]);
+            formData = new FormData();
+            formData.append('profile',e.target.files[0]);
+            console.log(formData);
+           // console.log(formData);
         }
         
     }
@@ -74,7 +71,7 @@ const SignUp = ({history}:any) =>{
                 alert('비밀번호 확인이 필요합니다.');
             }
             else{
-                Api({apiname : 'join' , params : member})
+                Api({apiname : 'join' , params : formData})
                 .then(function (response) {
                     alert('반갑습니다.');
                     setMember({
