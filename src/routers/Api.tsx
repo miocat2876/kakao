@@ -14,10 +14,8 @@ const Api = (param:any) => {
     const {params, apiname} = param;
     console.log(urlList[apiname]);
     let apiParam = {url: urlList[apiname].url, method: urlList[apiname].method, data: params};
-
     
     return axios(apiParam);
-
 }
 
 export default Api;
