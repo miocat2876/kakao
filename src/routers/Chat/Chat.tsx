@@ -53,12 +53,12 @@ var stompClient;
 	}
 	
 	//메세지 전송//
-	function sendMessage(text){
+	function sendMessage(text:string){
 		stompClient.send("/app/chat/"+chatId, {}, JSON.stringify({'message':text, 'name':''+sender}));
 	}
 	
     //상대방메세지
-    function output(value,check){
+    function output(value:any,check:string){
         console.log(this);
         if(check == "page")
             $("#chat_view").append('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
@@ -67,7 +67,7 @@ var stompClient;
     }
 
     //본인메세지
-    function input(value,check){
+    function input(value:any,check:string){
         if(check == "page")
             $("#chat_view").append('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
         else if(check == "set")
@@ -76,7 +76,7 @@ var stompClient;
 
     //돔에 채팅글 넣는 함수
 
-    function chatSet(chatList,check){
+    function chatSet(chatList:any,check:string){
 
         for(let s = 0; s<chatList.length;s++){
             if(true) //본인 이름과 같으면 input 아니면 output
@@ -122,6 +122,7 @@ var stompClient;
     //서버통신 함수
 
     const paging = ()=>{
+        
         Api({params: pageCheck() , apiname: 'paging'})
         .then(function (response) {
 
@@ -131,7 +132,7 @@ var stompClient;
         })
         .catch(function (error) {
 
-            chatSet([{num : 100,name : "testaaaaaaaa",message:"test1aaaaaaa"}],"page");
+            chatSet(a,"page");
             console.log(error);
     });
     }
@@ -143,13 +144,13 @@ var stompClient;
 
     function pageCheck(){
 
-        let startPageNum = $("#chat_view").children().last();
+        let startPageNum = $("#chat_view").children().last() + 1;
         let endPageNum = startPageNum + pageNum;
         let obj = {};
         obj['startPageNum'] = startPageNum;
         obj['endPageNum']= endPageNum;
         console.log(obj);
-        
+
         return obj
     }
 
@@ -167,7 +168,7 @@ const Chat = (props:any) => {
 
     useEffect(() => {
         scrollCheck();
-        chatSet(a,"set");
+        paging();
         window.onpopstate = function (event) {
             disconnect();
             //라우터 넣기.
@@ -182,7 +183,7 @@ const Chat = (props:any) => {
 
     const { name, chat } = chatInfo;
 
-    const out = (e) =>{
+    const out = (e:any) =>{
         //방나가기 통신 넣기.
         disconnect();
         //라우터 넣기.
@@ -191,7 +192,7 @@ const Chat = (props:any) => {
     }
 
 
-    const handleKeyUp = (e) => {
+    const handleKeyUp = (e:any) => {
         if (e.key == 'Enter') {
             console.log(chat);
     
@@ -206,7 +207,7 @@ const Chat = (props:any) => {
         }
     }
     
-    const handleChange = (e) => {
+    const handleChange = (e:any) => {
         console.log('handleChange');
         const { value, name } = e.target;
         setChat({
