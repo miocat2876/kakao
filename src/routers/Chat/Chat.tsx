@@ -59,7 +59,6 @@ var stompClient;
 	
     //상대방메세지
     function output(value:any,check:string){
-        console.log(this);
         if(check == "page")
             $("#chat_view").append('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
         else if(check == "set")
@@ -85,43 +84,34 @@ var stompClient;
 
     }
 
+    
+    //페이지 확인 함수
+
+    const pageCheck =() =>{
+        let obj = {};
+        obj['startPageNum'] = $("#chat_view").children().last() + 1;
+        obj['endPageNum'] = obj['startPageNum'] + pageNum;
+
+        console.log(obj);
+
+        return obj
+    }
+
+
     //스크롤 페이징 함수
-    //let sw =  true;
     function scrollCheck(){
         $('#chat_view').scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-            // console.log($('#chat_header').height());
-            // console.log($('#chat_input').height());
-            // console.log($('#chat_view')[0].scrollHeight+"scrollHeight~~~");
-            // console.log($('#chat_view')[0].scrollTop+"scrollTop~~~");
-            // console.log($('#chat_view'));
-            // console.log($('#chat').height()+"chatheight~~~");
-            // console.log($('#chat_view')[0].offsetHeight+"offsetHeight~~~");
-            // console.log($('#chat_view').scrollTop()*-1);
-            // console.log($('#chat').height() -$('#chat_header').height() - $('#chat_input').height() +"~~값");
-            // console.log($('#chat_view').height());
-            // console.log($('#chat_view')[0].scrollHeight <= $('#chat_view')[0].offsetHeight + $('#chat_view').scrollTop()*-1);
-            //스크롤 높이 =< chat_viewHegiht + chat_viewscrollTop *-1
-            
             if($('#chat_view')[0].scrollHeight <= $('#chat_view')[0].offsetHeight + $('#chat_view').scrollTop()*-1){
-                console.log('새로만들기');
-                //sw = false;  
+                console.log('페이징');
 
-                paging();
-                //chatSet([{num : 100,name : "testaaaaaaaa",message:"test1aaaaaaa"}],"page");
-
-                //  getList(page);
-                //   page++;   
+                paging(pageCheck);
             } 
         });
-
-        //$(window).scrollTop() <= $(document).height() - $(window).height())
-
-
     }
 
     //서버통신 함수
 
-    const paging = ()=>{
+    const paging = (pageCheck:Function)=>{
         
         Api({params: pageCheck() , apiname: 'paging'})
         .then(function (response) {
@@ -140,20 +130,6 @@ var stompClient;
 
 
 
-    //페이지 확인 함수
-
-    function pageCheck(){
-
-        let startPageNum = $("#chat_view").children().last() + 1;
-        let endPageNum = startPageNum + pageNum;
-        let obj = {};
-        obj['startPageNum'] = startPageNum;
-        obj['endPageNum']= endPageNum;
-        console.log(obj);
-
-        return obj
-    }
-
     
     
 
@@ -168,7 +144,7 @@ const Chat = (props:any) => {
 
     useEffect(() => {
         scrollCheck();
-        paging();
+        paging(pageCheck);
         window.onpopstate = function (event) {
             disconnect();
             //라우터 넣기.
