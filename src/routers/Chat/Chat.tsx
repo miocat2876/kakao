@@ -5,6 +5,14 @@ import 'react-stomp';
 import SockJS from 'sockjs-client';
 import { useLocation } from 'react-router-dom';
 import Stomp from 'stompjs';
+import Api from './../Api';
+
+var a = [{name : "test",message:"test1"},{name : "test",message:"test2"},{name : "test",message:"test3"},{name : "test",message:"test4"},{name : "test",message:"test5"},
+{name : "test",message:"test1"},{name : "test",message:"test2"},{name : "test",message:"test3"},{name : "test",message:"test4"},{name : "test",message:"test5"}
+,{name : "test",message:"test1"},{name : "test",message:"test2"},{name : "test",message:"test3"},{name : "test",message:"test4"},{name : "test",message:"test5"}
+,{name : "test",message:"test1"},{name : "test",message:"test2"},{name : "test",message:"test3"},{name : "test",message:"test4"},{name : "test",message:"test5"}]
+
+var pageNum = 20; //20개씩
 
 //웹소켓 설정//
 var stompClient;
@@ -25,9 +33,9 @@ var stompClient;
 
                 if(response.name == sender){ //본인아이디와 비교
                     console.log(response);
-                    input(response);
+                    input(response,"set");
                 }else{
-                    output(response);
+                    output(response,"set");
                 }
 			});
 
@@ -50,14 +58,102 @@ var stompClient;
 	}
 	
     //상대방메세지
-    function output(value){
-        $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
+    function output(value,check){
+        console.log(this);
+        if(check == "page")
+            $("#chat_view").append('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
+        else if(check == "set")
+            $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_o_p">'+value.name+': '+value.message+'</p></div>');
     }
 
     //본인메세지
-    function input(value){
-        $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
+    function input(value,check){
+        if(check == "page")
+            $("#chat_view").append('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
+        else if(check == "set")
+            $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_c_p">'+value.name+': '+value.message+'</p></div>');
     }
+
+    //돔에 채팅글 넣는 함수
+
+    function chatSet(chatList,check){
+
+        for(let s = 0; s<chatList.length;s++){
+            if(true) //본인 이름과 같으면 input 아니면 output
+            output(chatList[s],check);
+        }
+
+    }
+
+    //스크롤 페이징 함수
+    //let sw =  true;
+    function scrollCheck(){
+        $('#chat_view').scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+            // console.log($('#chat_header').height());
+            // console.log($('#chat_input').height());
+            // console.log($('#chat_view')[0].scrollHeight+"scrollHeight~~~");
+            // console.log($('#chat_view')[0].scrollTop+"scrollTop~~~");
+            // console.log($('#chat_view'));
+            // console.log($('#chat').height()+"chatheight~~~");
+            // console.log($('#chat_view')[0].offsetHeight+"offsetHeight~~~");
+            // console.log($('#chat_view').scrollTop()*-1);
+            // console.log($('#chat').height() -$('#chat_header').height() - $('#chat_input').height() +"~~값");
+            // console.log($('#chat_view').height());
+            // console.log($('#chat_view')[0].scrollHeight <= $('#chat_view')[0].offsetHeight + $('#chat_view').scrollTop()*-1);
+            //스크롤 높이 =< chat_viewHegiht + chat_viewscrollTop *-1
+            
+            if($('#chat_view')[0].scrollHeight <= $('#chat_view')[0].offsetHeight + $('#chat_view').scrollTop()*-1){
+                console.log('새로만들기');
+                //sw = false;  
+
+                paging();
+                //chatSet([{num : 100,name : "testaaaaaaaa",message:"test1aaaaaaa"}],"page");
+
+                //  getList(page);
+                //   page++;   
+            } 
+        });
+
+        //$(window).scrollTop() <= $(document).height() - $(window).height())
+
+
+    }
+
+    //서버통신 함수
+
+    const paging = ()=>{
+        Api({params: pageCheck() , apiname: 'paging'})
+        .then(function (response) {
+
+            console.log(response+"결과값");
+            chatSet(response,"page");
+           
+        })
+        .catch(function (error) {
+
+            chatSet([{num : 100,name : "testaaaaaaaa",message:"test1aaaaaaa"}],"page");
+            console.log(error);
+    });
+    }
+
+
+
+
+    //페이지 확인 함수
+
+    function pageCheck(){
+
+        let startPageNum = $("#chat_view").children().last();
+        let endPageNum = startPageNum + pageNum;
+        let obj = {};
+        obj['startPageNum'] = startPageNum;
+        obj['endPageNum']= endPageNum;
+        console.log(obj);
+        
+        return obj
+    }
+
+    
     
 
 
@@ -70,6 +166,8 @@ const Chat = (props:any) => {
     );
 
     useEffect(() => {
+        scrollCheck();
+        chatSet(a,"set");
         window.onpopstate = function (event) {
             disconnect();
             //라우터 넣기.
