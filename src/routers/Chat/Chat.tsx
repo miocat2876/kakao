@@ -78,8 +78,11 @@ var stompClient;
     function chatSet(chatList:any,check:string){
 
         for(let s = 0; s<chatList.length;s++){
-            if(true) //본인 이름과 같으면 input 아니면 output
-            output(chatList[s],check);
+            if(false) //본인 이름과 같으면 input 아니면 output
+                input(chatList[s],check);
+            else
+                output(chatList[s],check);
+                
         }
 
     }
@@ -145,7 +148,7 @@ const Chat = (props:any) => {
     useEffect(() => {
         scrollCheck();
         paging(pageCheck);
-        window.onpopstate = function (event) {
+        window.onpopstate = function (event:any) {
             disconnect();
             //라우터 넣기.
             props.history.push('/chats');
