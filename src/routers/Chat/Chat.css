@@ -62,7 +62,7 @@
 } 
 
 #chat_view::-webkit-scrollbar {
-    display: none;
+    /* display: none; */
 }
 
 .chat_p{
